@@ -29,10 +29,10 @@ public class HomePageTest extends CommonMethods {
 	
 	}
 
-//	@AfterClass
-//	public void destroy() {
-//		BaseClass.tearDown();
-//	}
+	@AfterClass
+	public void destroy() {
+		BaseClass.tearDown();
+	}
 
 	
 	

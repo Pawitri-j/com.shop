@@ -24,6 +24,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CommonMethods extends PageInitializer{
 	
+	public static WebDriver driver = BaseClass.openBrowserAndGetURL();
+	
 	// send text to webElement
 	public static void sendText(WebElement element, String text) {
 
@@ -91,7 +93,7 @@ public class CommonMethods extends PageInitializer{
 
 		try {
 
-			Alert alert = BaseClass.getDriver().switchTo().alert();
+			Alert alert = driver.switchTo().alert();
 			alert.dismiss();
 
 		} catch (NoAlertPresentException e) {
@@ -109,7 +111,7 @@ public class CommonMethods extends PageInitializer{
 
 		try {
 
-			Alert alert = BaseClass.getDriver().switchTo().alert();
+			Alert alert = driver.switchTo().alert();
 			alertText = alert.getText();
 
 		} catch (NoAlertPresentException e) {
@@ -124,7 +126,7 @@ public class CommonMethods extends PageInitializer{
 
 		try {
 
-			Alert alert = BaseClass.getDriver().switchTo().alert();
+			Alert alert = driver.switchTo().alert();
 			alert.accept();
 
 		} catch (NoAlertPresentException e) {
@@ -138,7 +140,7 @@ public class CommonMethods extends PageInitializer{
 
 		try {
 
-			Alert alert = BaseClass.getDriver().switchTo().alert();
+			Alert alert = driver.switchTo().alert();
 			alert.sendKeys(str);
 			alert.accept();
 
@@ -152,7 +154,7 @@ public class CommonMethods extends PageInitializer{
 	public static void switchToFrame(String nameOrIDofFrame) {
 
 		try {
-			BaseClass.getDriver().switchTo().frame(nameOrIDofFrame);
+			driver.switchTo().frame(nameOrIDofFrame);
 		} catch (NoSuchFrameException e) {
 			e.printStackTrace();
 		}
@@ -163,7 +165,7 @@ public class CommonMethods extends PageInitializer{
 	public static void switchToFrame(WebElement element) {
 
 		try {
-			BaseClass.getDriver().switchTo().frame(element);
+			driver.switchTo().frame(element);
 		} catch (NoSuchFrameException e) {
 			e.printStackTrace();
 		}
@@ -174,7 +176,7 @@ public class CommonMethods extends PageInitializer{
 	public static void switchToFrame(int index) {
 
 		try {
-			BaseClass.getDriver().switchTo().frame(index);
+			driver.switchTo().frame(index);
 		} catch (NoSuchFrameException e) {
 			e.printStackTrace();
 		}
@@ -184,13 +186,13 @@ public class CommonMethods extends PageInitializer{
 	// Handle windows by switching to child Window
 	public static void switchToChildWindow() {
 
-		String mainWindow = BaseClass.getDriver().getWindowHandle();
-		Set<String> windows = BaseClass.getDriver().getWindowHandles();
+		String mainWindow = driver.getWindowHandle();
+		Set<String> windows = driver.getWindowHandles();
 
 		for (String eachWindow : windows) {
 
 			if (!eachWindow.equals(mainWindow)) {
-				BaseClass.getDriver().switchTo().window(eachWindow);
+				driver.switchTo().window(eachWindow);
 				break;
 			}
 
@@ -201,7 +203,7 @@ public class CommonMethods extends PageInitializer{
 	//Wait
 	public static WebDriverWait getWaitObject() {
 
-		WebDriverWait wait = new WebDriverWait(BaseClass.getDriver(), Constants.EXPLICIT_WAIT_TIME);
+		WebDriverWait wait = new WebDriverWait(driver, Constants.EXPLICIT_WAIT_TIME);
 
 		return wait;
 	}
@@ -227,7 +229,7 @@ public class CommonMethods extends PageInitializer{
 
 	// JS executer
 	public static JavascriptExecutor getJSObject() {
-		JavascriptExecutor js = (JavascriptExecutor) BaseClass.getDriver();
+		JavascriptExecutor js = (JavascriptExecutor) driver;
 		return js;
 	}
 
@@ -266,7 +268,7 @@ public class CommonMethods extends PageInitializer{
 	//ScreenShot
 	public static byte[] takeScreenshot(String filename) {
 		
-		TakesScreenshot ts = (TakesScreenshot) BaseClass.getDriver();
+		TakesScreenshot ts = (TakesScreenshot) driver;
 		byte[] picBytes = ts.getScreenshotAs(OutputType.BYTES);
 
 		File file = ts.getScreenshotAs(OutputType.FILE);
@@ -308,19 +310,19 @@ public class CommonMethods extends PageInitializer{
 	
 	//hover over
 	public static void hover(WebElement element) {
-		Actions actions = new Actions(BaseClass.getDriver());
+		Actions actions = new Actions(driver);
 		actions.moveToElement(element).perform();
 	}
 
 	//dragAndDrop
 	public static void dragAndDrop(WebElement source, WebElement target) {
-		Actions actions = new Actions(BaseClass.getDriver());
+		Actions actions = new Actions(driver);
 		actions.dragAndDrop(source, target).perform();
 	}
 
 	//doubleClick
 	public static void doubleClick(WebElement source) {
-		Actions actions = new Actions(BaseClass.getDriver());
+		Actions actions = new Actions(driver);
 		actions.doubleClick(source).perform();
 	}
 	
