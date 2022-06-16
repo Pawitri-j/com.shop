@@ -14,7 +14,7 @@ public class HomePage {
 	}
 	
 	@FindBy(xpath = "//*[@id='promo-new-session']/button") public WebElement dismissButton;
-	
+	@FindBy(xpath = "//*[@id='new-header']/section/section[2]/div[2]/div/div[1]/button")public WebElement signInIcon;
 	
 	
 }// class

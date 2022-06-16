@@ -23,16 +23,19 @@ public class HomePageTest extends CommonMethods {
 			
 			h.dismissButton.click();
 			
+			CommonMethods.click(h.signInIcon);
+			
+			
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
 	
 	}
 
-	@AfterClass
-	public void destroy() {
-		BaseClass.tearDown();
-	}
+//	@AfterClass
+//	public void destroy() {
+//		BaseClass.tearDown();
+//	}
 
 	
 	

@@ -24,7 +24,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CommonMethods extends PageInitializer{
 	
-	public static WebDriver driver = BaseClass.openBrowserAndGetURL();
+	public static WebDriver driver = BaseClass.getDriver();
 	
 	// send text to webElement
 	public static void sendText(WebElement element, String text) {
