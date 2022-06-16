@@ -29,10 +29,10 @@ public class HomePageTest extends CommonMethods {
 	
 	}
 
-	@AfterClass
-	public void destroy() {
-		BaseClass.tearDown();
-	}
+//	@AfterClass
+//	public void destroy() {
+//		BaseClass.tearDown();
+//	}
 
 	
 	
@@ -41,7 +41,9 @@ public class HomePageTest extends CommonMethods {
 	
 	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
 	public void homePage_hgfglkjkhgdfjhklhkglkhgf_1() {
-
+		
+		System.out.println("hello");
+		
 	}
 
 }// class

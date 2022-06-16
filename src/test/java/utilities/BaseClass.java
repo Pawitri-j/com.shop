@@ -34,7 +34,7 @@ public class BaseClass {
 				
 				break;
 				
-			case "egde": 
+			case "edge": 
 				WebDriverManager.edgedriver().setup();
 				driver = new EdgeDriver();
 				
@@ -53,8 +53,6 @@ public class BaseClass {
 			}
 			
 		}
-		
-		PageInitializer.initialize();
 		return driver;
 	}
 	
@@ -63,6 +61,7 @@ public class BaseClass {
 		public static WebDriver openBrowserAndGetURL() {
 
 			driver = BaseClass.getDriver();
+			PageInitializer.initialize();
 			driver.get(BaseClass.getPropertyString("url"));
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
