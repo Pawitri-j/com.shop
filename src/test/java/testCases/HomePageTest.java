@@ -1,8 +1,6 @@
 package testCases;
 
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -51,7 +49,28 @@ public class HomePageTest extends CommonMethods {
 		h.checkIfLogoNavigateToHomePage();
 	}
 	
+	//Armeena 06/20/22
 	
+	@Test
+	public void homePage_categoryTabFunctionality_1() {
+
+		h.categoriesTabIsNavigate();
+
+	}
+	
+	@Test
+	public void homePage_tabsUnderSearchBarFunctionality_2() {
+
+		h.checkEachTabUnderSearchBar();
+
+	}
+
+	@Test
+	public void homePage_categoryTabFunctionality_3() {
+
+		h.changeZipcode();
+
+	}
 	
 	
 	

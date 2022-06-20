@@ -8,6 +8,8 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import utilities.BaseClass;
@@ -210,6 +212,130 @@ public class HomePage extends CommonMethods {
 
 	}
 	
+	//Armeena 06/20/22
+	
+	@FindBy(xpath = "//*[@id=\"new-header\"]/section/section[2]/div[2]/section/nav/ul/li[4]/a")
+	public WebElement shopTravelButton;
+
+	@FindBy(xpath = "//*[@id='new-header']/section/section[1]/div[2]/button")
+	public WebElement categoriesButton;
+
+	@FindBy(xpath = "//*[@id='new-header']/section/section[2]/div[2]/div/div[3]/button")
+	public WebElement cartButton;
+
+	@FindBy(xpath = "//*[@id='main-menu']")
+	public List<WebElement> categoriesList;
+
+	@FindBy(xpath = "//*[@id='new-header']/section/section[1]/div[2]/nav/h2")
+	public WebElement verifyCategoriesText;
+
+	@FindBy(xpath = "//*[@id=\"main-menu\"]/li/button/span")
+	public List<WebElement> arrowList;
+
+	@FindBy(xpath = " //*[contains(@id,'categoryMenu')]/h2")
+	public List<WebElement> categoriesHeaderList;
+
+	@FindBy(xpath = "//*[contains(@id,'categoryMenu')]/button[1]")
+	public List<WebElement> dismissSubCategoriesList;
+
+	@FindBy(xpath = "//*[@id=\"main-menu\"]/li/button")
+	public List<WebElement> categoriesWithSubList;
+
+	@FindBy(xpath = "//*[@id=\"main-menu\"]/li/a")
+	public List<WebElement> categoriesTabLinkList;
+
+	@FindBy(xpath = "//*[@id='new-header']/section/section[2]/div[2]/section/nav/ul/li/a")
+	public List<WebElement> underSearchBarTabsList;
+
+	@FindBy(xpath = "//*[contains(@id,'page')]/section/section/article/")
+	public List<WebElement> verifyTabTextsList;
+
+	@FindBy(xpath = "//*[@id=\"page\"]/section/section/section[2]/section[14]/div/div/div/p/a")
+	public WebElement shopLocalButton;
+
+	@FindBy(xpath = "//*[contains(@id,'near')]")
+	public WebElement zipcodeBox;
+
+	@FindBy(xpath = "//*[contains(@id,'shoplocal-searchbar')]/form/div[2]/div/button")
+	public WebElement searchIcon;
+
+	@FindBy(xpath = "//*[@id=\"page\"]/section/section/section/div[3]/div[1]/div[2]/h2")
+	public WebElement verifyZipcode;
+
+	public void categoriesTabIsNavigate() {
+
+		String category;
+		String categoryHeader;
+		String homePageUrl;
+		String currentTabUrl;
+
+		CommonMethods.jsClick(categoriesButton);
+
+		WebDriverWait wait = new WebDriverWait(BaseClass.getDriver(), 20);
+		wait.until(ExpectedConditions.visibilityOfAllElements(categoriesWithSubList));
+		wait.until(ExpectedConditions.elementToBeClickable(categoriesWithSubList.get(0)));
+		
+		if (arrowList.get(0).isDisplayed()) {
+			for (int i = 0; i < categoriesWithSubList.size(); i++) {
+
+				category = categoriesWithSubList.get(i).getText();
+
+				System.out.println("Cat:  " + category);
+
+				CommonMethods.jsClick(categoriesWithSubList.get(i));
+				categoryHeader = categoriesHeaderList.get(i).getText();
+
+				System.out.println("Header:  " + categoryHeader);
+				Assert.assertTrue(category.contains(categoryHeader));
+				CommonMethods.jsClick(dismissSubCategoriesList.get(i));
+
+				CommonMethods.jsClick(categoriesButton);
+			}
+		}
+
+		for (int i = 0; i < categoriesTabLinkList.size(); i++) {
+
+			homePageUrl = BaseClass.getDriver().getCurrentUrl();
+			categoriesTabLinkList.get(i).click();
+
+			currentTabUrl = BaseClass.getDriver().getCurrentUrl();
+			Assert.assertFalse(homePageUrl.equals(currentTabUrl));
+			categoriesButton.click();
+
+		}
+	}
+
+	public void checkEachTabUnderSearchBar() {
+
+		String tabsMenu;
+		String tabsHeader;
+
+		for (int i = 0; i < underSearchBarTabsList.size(); i++) {
+
+			tabsMenu = underSearchBarTabsList.get(i).getText();
+
+			System.out.println("Menu:  " + tabsMenu);
+
+			CommonMethods.jsClick(underSearchBarTabsList.get(i));
+
+			tabsHeader = underSearchBarTabsList.get(i).getText();
+
+			System.out.println("Header:  " + tabsHeader);
+			Assert.assertTrue(tabsMenu.contains(tabsHeader));
+
+		}
+
+	}
+
+	public void changeZipcode() {
+		CommonMethods.jsClick(shopLocalButton);
+		zipcodeBox.clear();
+		zipcodeBox.sendKeys(BaseClass.getPropertyString("zipCode"));
+		searchIcon.click();
+		BaseClass.getDriver().navigate().refresh();
+		Assert.assertTrue(verifyZipcode.getText().contains(BaseClass.getPropertyString("zipCode")));
+		System.out.println("Passed");
+	}
 	
 	
 	
