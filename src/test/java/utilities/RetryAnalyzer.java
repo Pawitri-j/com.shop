@@ -7,7 +7,7 @@ public class RetryAnalyzer implements IRetryAnalyzer{
 
 	
 	int counter = 0;
-	int retryLimit = 5;
+	int retryLimit = 0;
 
 	@Override
 	public boolean retry(ITestResult result) {
@@ -19,6 +19,11 @@ public class RetryAnalyzer implements IRetryAnalyzer{
 
 		}
 
+		
+		
+		CommonMethods.takeScreenshot_fail("failedTestcase");
+	
+		
 		return false;
 	}
 

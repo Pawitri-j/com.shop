@@ -21,11 +21,12 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.UnexpectedTagNameException;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
-public class CommonMethods extends PageInitializer{
-	
-	public static WebDriver driver = BaseClass.getDriver();
-	
+public class CommonMethods extends PageInitializer {
+
+	private static WebDriver driver = BaseClass.getDriver();
+
 	// send text to webElement
 	public static void sendText(WebElement element, String text) {
 
@@ -47,7 +48,6 @@ public class CommonMethods extends PageInitializer{
 			}
 		}
 	}
-	
 
 	// select StaticdropDown value
 	public static void selectDropDownValue(WebElement element, String textToSelect) {
@@ -88,7 +88,7 @@ public class CommonMethods extends PageInitializer{
 
 	}
 
-	//Dismisses alerts and   catches exception if alert is not present
+	// Dismisses alerts and catches exception if alert is not present
 	public static void dismissAlert() {
 
 		try {
@@ -102,8 +102,7 @@ public class CommonMethods extends PageInitializer{
 
 	}
 
-
-	//Capture text of alert    and catches exception if alert is not present
+	// Capture text of alert and catches exception if alert is not present
 	// return type has to be String
 	public static String getAlertText() {
 
@@ -200,7 +199,7 @@ public class CommonMethods extends PageInitializer{
 
 	}
 
-	//Wait
+	// Wait
 	public static WebDriverWait getWaitObject() {
 
 		WebDriverWait wait = new WebDriverWait(driver, Constants.EXPLICIT_WAIT_TIME);
@@ -208,21 +207,19 @@ public class CommonMethods extends PageInitializer{
 		return wait;
 	}
 
-	
-	
-	//waitForClickability
+	// waitForClickability
 	public static WebElement waitForClickability(WebElement element) {
 
 		return getWaitObject().until(ExpectedConditions.elementToBeClickable(element));
 	}
 
-	//waitForVisibility
+	// waitForVisibility
 	public static WebElement waitForVisibility(WebElement element) {
 
 		return getWaitObject().until(ExpectedConditions.visibilityOf(element));
 	}
 
-	//click
+	// click
 	public static void click(WebElement element) {
 		waitForVisibility(element).click();
 	}
@@ -233,7 +230,7 @@ public class CommonMethods extends PageInitializer{
 		return js;
 	}
 
-	//jsClick
+	// jsClick
 	public static void jsClick(WebElement element) {
 		getJSObject().executeScript("arguments[0].click();", element);
 	}
@@ -243,7 +240,7 @@ public class CommonMethods extends PageInitializer{
 		getJSObject().executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 
-	// JS scrollToElement by pixel 
+	// JS scrollToElement by pixel
 	public static void ScrollByPixel(int pixel) {
 		// scroll down positive
 		// scroll up negative
@@ -252,8 +249,7 @@ public class CommonMethods extends PageInitializer{
 
 	}
 
-	
-	//time stamp
+	// time stamp
 	public static String getTimeStamp() {
 
 		Date date = new Date();
@@ -263,18 +259,16 @@ public class CommonMethods extends PageInitializer{
 		return sdf.format(date.getTime());
 	}
 
-	
-	
-	//ScreenShot
+	// ScreenShot
 	public static byte[] takeScreenshot(String filename) {
-		
+
 		TakesScreenshot ts = (TakesScreenshot) driver;
 		byte[] picBytes = ts.getScreenshotAs(OutputType.BYTES);
 
 		File file = ts.getScreenshotAs(OutputType.FILE);
-		String destinationFile = Constants.SCREENSHOT_FILEPATH + filename + getTimeStamp() + BaseClass.getPropertyString("screenShotsFileType");
+		String destinationFile = Constants.SCREENSHOT_FILEPATH + filename + getTimeStamp()
+				+ BaseClass.getPropertyString("screenShotsFileType");
 
-			
 		try {
 			FileUtils.copyFile(file, new File(destinationFile));
 		} catch (Exception ex) {
@@ -284,9 +278,7 @@ public class CommonMethods extends PageInitializer{
 		return picBytes;
 	}
 
-	
-	
-	//Thread sleep wait
+	// Thread sleep wait
 	public static void wait(int second) {
 
 		try {
@@ -295,8 +287,8 @@ public class CommonMethods extends PageInitializer{
 			e.printStackTrace();
 		}
 	}
-	
-	//selectCalendarDate
+
+	// selectCalendarDate
 	public static void selectCalendarDate(List<WebElement> element, String text) {
 		for (WebElement pickDate : element) {
 			if (pickDate.isEnabled()) {
@@ -307,26 +299,25 @@ public class CommonMethods extends PageInitializer{
 			}
 		}
 	}
-	
-	//hover over
+
+	// hover over
 	public static void hover(WebElement element) {
 		Actions actions = new Actions(driver);
 		actions.moveToElement(element).perform();
 	}
 
-	//dragAndDrop
+	// dragAndDrop
 	public static void dragAndDrop(WebElement source, WebElement target) {
 		Actions actions = new Actions(driver);
 		actions.dragAndDrop(source, target).perform();
 	}
 
-	//doubleClick
+	// doubleClick
 	public static void doubleClick(WebElement source) {
 		Actions actions = new Actions(driver);
 		actions.doubleClick(source).perform();
 	}
-	
-	
+
 	/**
 	 * return a list of string from a list of elements ignores any element with no
 	 * text
@@ -343,24 +334,90 @@ public class CommonMethods extends PageInitializer{
 		}
 		return elemTexts;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-}
+	// added by Pawitri 06/19/2022
+	public static void dismissNonJsPopUp(WebElement nonJsPopUpDissButton) {
+
+		try {
+
+			nonJsPopUpDissButton.click();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	// added by Pawitri 06/19/2022
+	public static void assertCheckIsNavigateURL(List<WebElement> listOfWebElement) {
+
+		String homePageURL = driver.getCurrentUrl();
+
+		for (int i = 0; i < listOfWebElement.size(); i++) {
+
+			listOfWebElement.get(i).click();
+			String clickedPageURL = driver.getCurrentUrl();
+
+			// check if it navigated to different page after click
+			Assert.assertFalse(homePageURL.equals(clickedPageURL));
+
+		}
+	}
+
+	// added by Pawitri 06/19/2022
+	public static void clickSpecificElementInListByText(List<WebElement> listOfWebElement,
+			String textOfSpecificElement) {
+
+		String departmentText;
+
+		for (int i = 1; i < listOfWebElement.size(); i++) {
+
+			departmentText = listOfWebElement.get(i).getText();
+			if (departmentText.contains(textOfSpecificElement)) {
+				listOfWebElement.get(i).click();
+			}
+		}
+
+	}
+
+	// added by Pawitri 06/19/2022
+	// ScreenShot for Pass test
+	public static byte[] takeScreenshot_pass(String filename) {
+
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		byte[] picBytes = ts.getScreenshotAs(OutputType.BYTES);
+
+		File file = ts.getScreenshotAs(OutputType.FILE);
+		String destinationFile = Constants.SCREENSHOT_FILEPATH_PASS + filename + getTimeStamp()
+				+ BaseClass.getPropertyString("screenShotsFileType");
+
+		try {
+			FileUtils.copyFile(file, new File(destinationFile));
+		} catch (Exception ex) {
+			System.out.println("Cannot take screenshot!");
+		}
+
+		return picBytes;
+	}
+
+	// added by Pawitri 06/19/2022
+	// ScreenShot for fail test
+	public static byte[] takeScreenshot_fail(String filename) {
+
+		TakesScreenshot ts = (TakesScreenshot) driver;
+		byte[] picBytes = ts.getScreenshotAs(OutputType.BYTES);
+
+		File file = ts.getScreenshotAs(OutputType.FILE);
+		String destinationFile = Constants.SCREENSHOT_FILEPATH_FAIL + filename + getTimeStamp()
+				+ BaseClass.getPropertyString("screenShotsFileType");
+
+		try {
+			FileUtils.copyFile(file, new File(destinationFile));
+		} catch (Exception ex) {
+			System.out.println("Cannot take screenshot!");
+		}
+
+		return picBytes;
+	}
+
+}// class

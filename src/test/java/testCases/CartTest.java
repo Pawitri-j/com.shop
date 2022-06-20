@@ -11,23 +11,20 @@ import utilities.CommonMethods;
 public class CartTest extends CommonMethods {
 
 	public WebDriver driver;
+    @BeforeMethod
+    public void setUp() {
 
-	@BeforeMethod
-	public void setUp() {
+        driver = BaseClass.openBrowserAndGetURL();
 
-		driver = BaseClass.openBrowserAndGetURL();
+      CommonMethods.dismissNonJsPopUp(h.dismissButton);
+    }
 
-	}
-
-	@AfterClass
-	public void destroy() {
-		BaseClass.tearDown();
-	}
-
-	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
-	public void Cart_fghjksdfghj_1() {
-
-	}
+    @AfterClass
+    public void destroy() {
+        BaseClass.tearDown();    
+        }
+    
+   
 	
 	
 	

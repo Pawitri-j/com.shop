@@ -1,10 +1,8 @@
 package testCases;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
+import org.openqa.selenium.WebDriver;
+import org.testng.annotations.BeforeMethod;
 import utilities.BaseClass;
 import utilities.CommonMethods;
 
@@ -14,19 +12,19 @@ public class SignInTest extends CommonMethods {
 
 	@BeforeMethod
 	public void setUp() {
-
+		
 		driver = BaseClass.openBrowserAndGetURL();
-
+		
+		CommonMethods.dismissNonJsPopUp(h.dismissButton);
 	}
 
-	@AfterClass
-	public void destroy() {
-		BaseClass.tearDown();
-	}
+//	@AfterClass
+//	public void destroy() {
+//		BaseClass.tearDown();
+//	}
 
 	
 	
-	String validUserName = "kapow1@gmail.com";
 	
 	
 	
@@ -34,9 +32,11 @@ public class SignInTest extends CommonMethods {
 	
 	
 	
-	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
-	public void SignIn_hjklasdfasdfsdafas_1() {
-
-	}
+	
+	
+	
+	
+	
+	
 
 }// class

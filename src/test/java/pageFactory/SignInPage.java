@@ -1,10 +1,13 @@
 package pageFactory;
 
+
 import org.openqa.selenium.support.PageFactory;
 
-import utilities.BaseClass;
 
-public class SignInPage {
+import utilities.BaseClass;
+import utilities.CommonMethods;
+
+public class SignInPage extends CommonMethods{
 
 	
 	public SignInPage() {
@@ -13,9 +16,7 @@ public class SignInPage {
 	}
 	
 	
-	
-	
-	
+
 	
 	
 	

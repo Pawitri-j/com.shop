@@ -5,9 +5,8 @@
     <classes>
       <class name="testCases.HomePageTest">
         <methods>
-          <include name="homePage_hgfglkjkhgdfjhklhkglkhgf_1"/>
-          <include name="destroy"/>
           <include name="setUp"/>
+          <include name="homePage_logoNavigatesToHomePage_3"/>
         </methods>
       </class> <!-- testCases.HomePageTest -->
     </classes>

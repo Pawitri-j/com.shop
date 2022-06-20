@@ -2,9 +2,11 @@ package pageFactory;
 
 import org.openqa.selenium.support.PageFactory;
 
-import utilities.BaseClass;
 
-public class CartPage {
+import utilities.BaseClass;
+import utilities.CommonMethods;
+
+public class CartPage extends CommonMethods{
 	
 	
 	
@@ -14,6 +16,9 @@ public class CartPage {
 		PageFactory.initElements(BaseClass.getDriver(), this);	
 		
 	}
-
+	
+	
+	
+	
 	
 }//class

@@ -12,21 +12,28 @@ public class ShopTravel extends CommonMethods {
 
 	public WebDriver driver;
 
-	@BeforeMethod
-	public void setUp() {
+	 @BeforeMethod
+	    public void setUp() {
 
-		driver = BaseClass.openBrowserAndGetURL();
+	        driver = BaseClass.openBrowserAndGetURL();
 
-	}
+	        CommonMethods.dismissNonJsPopUp(h.dismissButton);
+	    }
 
-	@AfterClass
-	public void destroy() {
-		BaseClass.tearDown();
-	}
+	 	
+//	    @AfterClass
+//	    public void destroy() {
+//	        BaseClass.tearDown();
+//	    }
+	 
 
-	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
-	public void Serach_hjklkjhgfd_1() {
+	 
+	 
+	 
+	 
+	 
+	 
 
-	}
-
+	    
+	    
 }// class

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-06-16T19:58:45 EDT" name="Default suite" finished-at="2022-06-16T19:59:05 EDT" duration-ms="19532">
+  <suite started-at="2022-06-19T22:16:56 EDT" name="Default suite" finished-at="2022-06-19T22:17:22 EDT" duration-ms="25956">
     <groups>
     </groups>
-    <test started-at="2022-06-16T19:58:45 EDT" name="Default test" finished-at="2022-06-16T19:59:05 EDT" duration-ms="19532">
+    <test started-at="2022-06-19T22:16:56 EDT" name="Default test" finished-at="2022-06-19T22:17:22 EDT" duration-ms="25956">
       <class name="testCases.HomePageTest">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:testCases.HomePageTest@411291e5]" started-at="2022-06-16T19:58:45 EDT" name="setUp" finished-at="2022-06-16T19:59:05 EDT" duration-ms="19479" status="PASS">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testCases.HomePageTest@3d7cc3cb]" started-at="2022-06-19T22:16:56 EDT" name="setUp" finished-at="2022-06-19T22:17:19 EDT" duration-ms="23012" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="homePage_hgfglkjkhgdfjhklhkglkhgf_1()[pri:1, instance:testCases.HomePageTest@411291e5]" started-at="2022-06-16T19:59:05 EDT" name="homePage_hgfglkjkhgdfjhklhkglkhgf_1" finished-at="2022-06-16T19:59:05 EDT" duration-ms="12" status="PASS">
+        <test-method signature="homePage_BackTotopButton_2()[pri:2, instance:testCases.HomePageTest@3d7cc3cb]" started-at="2022-06-19T22:17:19 EDT" name="homePage_BackTotopButton_2" finished-at="2022-06-19T22:17:22 EDT" duration-ms="2898" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- homePage_hgfglkjkhgdfjhklhkglkhgf_1 -->
+        </test-method> <!-- homePage_BackTotopButton_2 -->
       </class> <!-- testCases.HomePageTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

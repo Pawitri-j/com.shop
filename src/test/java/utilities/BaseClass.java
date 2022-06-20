@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -65,6 +66,7 @@ public class BaseClass {
 			driver.get(BaseClass.getPropertyString("url"));
 			driver.manage().window().maximize();
 			driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+			//driver.manage().deleteAllCookies(); //Don't want this one because want to ScreenShot reCaptcha
 			return driver;
 			
 		}
@@ -135,7 +137,6 @@ public class BaseClass {
 		
 			return c;	
 		}
-	
 	
 	
 	
