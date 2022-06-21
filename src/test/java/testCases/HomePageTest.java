@@ -54,6 +54,7 @@ public class HomePageTest extends CommonMethods {
 	@Test
 	public void homePage_categoryTabFunctionality_1() {
 
+		CommonMethods.dismissNonJsPopUp(h.dismissButton);
 		h.categoriesTabIsNavigate();
 
 	}

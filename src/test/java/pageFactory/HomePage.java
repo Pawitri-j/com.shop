@@ -300,6 +300,7 @@ public class HomePage extends CommonMethods {
 
 			currentTabUrl = BaseClass.getDriver().getCurrentUrl();
 			Assert.assertFalse(homePageUrl.equals(currentTabUrl));
+			CommonMethods.waitForVisibility(categoriesButton);
 			categoriesButton.click();
 
 		}
