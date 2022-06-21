@@ -24,6 +24,20 @@ public class CartTest extends CommonMethods {
         BaseClass.tearDown();    
         }
     
+    // Alip	06/21/2022
+	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
+	public void Cart_VerifySubTotal_1() {
+		c.verifySubTotal();
+
+	}
+	
+    // Alip	06/21/2022
+	@Test(priority = 2, retryAnalyzer = utilities.RetryAnalyzer.class)
+	public void Cart_VerifySaveForLater_2() {
+		c.verifySaveForLater();
+		
+	}
+    
    
 	
 	
