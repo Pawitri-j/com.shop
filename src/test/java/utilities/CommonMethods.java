@@ -308,6 +308,23 @@ public class CommonMethods extends PageInitializer{
 		}
 	}
 	
+	//Created by Alip
+	//select value from list
+	public static void selectValueFromListByText(List<WebElement> element, String text) {
+		for (WebElement value : element) {
+			if (value.isDisplayed()) {
+				if (value.getText().contains(text)) {
+					value.click();
+					break;
+				}
+			}
+		}
+	}
+	
+	
+	
+	
+	
 	//hover over
 	public static void hover(WebElement element) {
 		Actions actions = new Actions(driver);

@@ -17,6 +17,13 @@ public class ShopTravel extends CommonMethods {
 
 		driver = BaseClass.openBrowserAndGetURL();
 
+		try {
+			
+			h.dismissButton.click();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@AfterClass
@@ -25,8 +32,8 @@ public class ShopTravel extends CommonMethods {
 	}
 
 	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
-	public void Serach_hjklkjhgfd_1() {
-
+	public void ShopTravel_SearchCarRental_1() {
+		st.SearchCarRental();
 	}
 
 }// class

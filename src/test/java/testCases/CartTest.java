@@ -17,16 +17,35 @@ public class CartTest extends CommonMethods {
 
 		driver = BaseClass.openBrowserAndGetURL();
 
+		try {
+			
+			h.dismissButton.click();
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	@AfterClass
-	public void destroy() {
-		BaseClass.tearDown();
+//	@AfterClass
+//	public void destroy() {
+//		BaseClass.tearDown();	
+//		}
+	
+
+//	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
+
+	@Test
+	public void Cart_VerifySubTotal_1() {
+		c.verifySubTotal();
+
 	}
-
-	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
-	public void Cart_fghjksdfghj_1() {
-
+	
+	
+//	@Test(priority = 2, retryAnalyzer = utilities.RetryAnalyzer.class)
+	@Test
+	public void Cart_VerifySaveForLater_2() {
+		c.verifySaveForLater();
+		
 	}
 	
 	
