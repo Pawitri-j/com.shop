@@ -49,6 +49,25 @@ public class HomePage extends CommonMethods {
 	// HomePage Test
 	@FindBy(xpath = "//*[@id='main-menu']/li")
 	public List<WebElement> categoryList;
+	
+	// Alip 06/21/2022	
+//	@FindBy(xpath = "//*[@id=\"new-header\"]/section/section[2]/div[2]/section/nav/ul/li[4]/a")
+//	public WebElement shopTravelButton;
+	
+//	@FindBy(xpath = "//*[@id='new-header']/section/section[1]/div[2]/button")
+//	public WebElement categoriesButton;
+	
+//	@FindBy(xpath = "//*[@id='new-header']/section/section[2]/div[2]/div/div[3]/button")
+//	public WebElement cartButton;
+	
+	@FindBy(xpath = "//*[@id='new-header']/section/section[2]/div[2]/div/div[3]/section/section/section[2]/a")
+	public WebElement paymentUnderCartButton;
+	
+//	@FindBy(xpath = "//*[@id='main-menu']/li/button")
+//	public List<WebElement> categoriesList;
+	
+	@FindBy(xpath = "//*[contains (@class, 'header-subnav__item-link')]")
+	public List<WebElement> bigCategoriesList;
 
 	// Pawitri 06/16/2022
 

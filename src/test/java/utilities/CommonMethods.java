@@ -419,5 +419,32 @@ public class CommonMethods extends PageInitializer {
 
 		return picBytes;
 	}
+	 
+		//Created by Alip	06/21/2022
+		//select value from list
+		
+		public static void clickValueFromListByText(List<WebElement> element, String text) {
+			for (WebElement value : element) {
+				if (value.isDisplayed()) {
+					if (value.getText().contains(text)) {
+						value.click();
+						break;
+					}
+				}
+			}
+		}
+		
+		//Created by Alip	06/21/2022
+		//select value from list
+		public static void doubleClickValueFromListByText(List<WebElement> element, String text) {
+			for (WebElement value : element) {
+				if (value.isDisplayed()) {
+					if (value.getText().contains(text)) {
+						doubleClick(value);
+						break;
+					}
+				}
+			}
+		}
 
 }// class
