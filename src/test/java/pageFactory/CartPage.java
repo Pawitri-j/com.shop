@@ -84,7 +84,7 @@ public class CartPage extends CommonMethods{
 	public void verifySubTotal() {
 		CommonMethods.waitForVisibility(h.categoriesButton).click();
 
-		CommonMethods.clickValueFromListByText(h.categoriesList, "Home");
+		CommonMethods.clickValueFromListByText(h.categoriesListButton, "Home");
 		CommonMethods.clickValueFromListByText(h.bigCategoriesList, "Garden");
 	
 		CommonMethods.waitForVisibility(firstAddToCartButton);
@@ -107,13 +107,22 @@ public class CartPage extends CommonMethods{
 	public void verifySaveForLater() {
 		CommonMethods.waitForVisibility(h.categoriesButton).click();
 
-		CommonMethods.clickValueFromListByText(h.categoriesList, "Jewelry");
+		CommonMethods.clickValueFromListByText(h.categoriesListButton, "Jewelry");
 		CommonMethods.clickValueFromListByText(h.bigCategoriesList, "Bracelets");
 		CommonMethods.clickValueFromListByText(h.bigCategoriesList, "Chain");
 		
+		try {
 		CommonMethods.waitForVisibility(firstChooseOption);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		CommonMethods.jsClick(firstChooseOption);
+		try {
 		CommonMethods.waitForVisibility(firstOption);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
 		CommonMethods.jsClick(firstOption);
 		CommonMethods.jsClick(addToCartButton);
 		CommonMethods.waitForVisibility(viewCartButton);
