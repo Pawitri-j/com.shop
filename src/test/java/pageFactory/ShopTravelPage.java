@@ -5,13 +5,15 @@ import java.util.List;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import utilities.BaseClass;
 import utilities.CommonMethods;
 
 public class ShopTravelPage extends CommonMethods{
-
+	WebDriverWait wait = new WebDriverWait(BaseClass.getDriver(),20);///Maria wait////
 	public ShopTravelPage() {
 
 		PageFactory.initElements(BaseClass.getDriver(), this);
@@ -91,7 +93,256 @@ public class ShopTravelPage extends CommonMethods{
 		
 	}
 	
+///////////////////Maria/////////////////////////////////////////////
+@FindBy(xpath="(//*[@class='travel-section'])[1]")public  List<WebElement> travelCategoryList;
+@FindBy(xpath="//*[text()='SHOP Travel']")public WebElement shopTravelTab;
+
+@FindBy(xpath="//div[@id='js-shop-travel-hotel']")public WebElement hotelButton;
+
+@FindBy(xpath="//input[@id='hotel_city']")public WebElement cityorAirportCodeBTNHotel;
+@FindBy (xpath = "//ul[@id='hotel-city-type-ahead']") public List<WebElement> hotelCityList ;
+
+
+
+@FindBy(xpath="//*[@id='hotel_start_date']") public WebElement hotelDateBar;
+
+@FindBy(xpath="//*[contains(@class, 'ui-state-default')]")public List<WebElement> hotelStartDate;
+
+@FindBy(xpath="//input[@id='hotel_end_date']")public WebElement hotelendDate;
+@FindBy(xpath="//*[@id='rooms-hotel']/div[1]/button[1]")public WebElement hotelNoOfRoomsIncrement;
+
+@FindBy(xpath="//input[@name='hotel_adult1']")public WebElement noOfAdultsBarhotel;
+
+@FindBy(xpath="//input[@name='hotel_child1']")public WebElement noOfChildrenBarhotel;
+
+@FindBy(xpath="//input[@id='js-shopper-email']")public WebElement UserEmailhotel;
+
+@FindBy(xpath="//input[@id='js-travel-search']")public WebElement searchBookinghotel;
+
+//Flight xpaths/////////////////////////////////////////
+
+@FindBy(xpath="//div[@id='js-shop-travel-flights']")public WebElement flightButton;
+@FindBy(xpath="//div[@role='radiogroup']")List<WebElement> roundTripRadioButtonList;
+@FindBy(xpath="//input[@id='flight-round-trip']") public WebElement roundTripButton;
+
+@FindBy(xpath="//input[@id='flight_origination']")public WebElement flightFromCityOrAirport;
+@FindBy(xpath="//input[@id='flight_destination']")public WebElement flightToCityOrAirportBar;
+
+
+@FindBy(xpath="//*[@id='flight-from-type-ahead']") List<WebElement> flightFromCityAirportlistOptions;
+@FindBy(xpath="//ul[@id='flight-to-type-ahead']")List <WebElement> flightToCityOrAirportList;
+@FindBy(xpath="//input[@id='flight_depart_date']") public WebElement flightDepartureDate;
+@FindBy(xpath="//span[@class='ui-datepicker-month']") public WebElement calenderMonth;
+
+@FindBy(xpath="//span[@class='ui-datepicker-year']") public WebElement calenderYear;
+@FindBy(xpath="//a[@title='Next']") public WebElement calendernextMonthButton;
+
+@FindBy(xpath="//table[@class='ui-datepicker-calendar']//td") List<WebElement> allDates;
+@FindBy(xpath="//input[@id='flight_return_date']") public WebElement flightReturnDate;
+@FindBy(xpath="//input[@id='flight_number_travelers']") public WebElement flightNoOfTravellers;
+@FindBy(xpath="//input[@id='js-shopper-email']")public WebElement flightUserEmail;
+@FindBy(xpath="//input[@id='js-travel-search']") public WebElement flightSearchCheapOAir;
+
+String CityOrairPortCodeHotel="IAD";
+String noOfAdults="2";
+String noOfChildren="1";
+String flightStartDate="24";
+String flightEndDate="28";
+String email="kapow1@gmail.com";
+String flightToCity="LAX";
+String flightstartMonth="June";
+String flightFromCity="DCA";
+String flightstartYear="2022";
+String flightendMonth="August";
+String flightendYear="2022";
+String hotelNoOfRooms="1";
+
+public void clickShopTravelTab() {
+
+shopTravelTab.click();}
+
+public void clickHotelButton() {
+for(int i=0;i<travelCategoryList.size();i++){
+if(travelCategoryList.get(i).getText().contains("Hotel")) {
+	travelCategoryList.get(i).click();
+}
+}
+//hotelButton.click();}
+}
+public void clickCityAirportCodeBTN() {
+
+
+cityorAirportCodeBTNHotel.click();
+cityorAirportCodeBTNHotel.sendKeys(CityOrairPortCodeHotel );
+
+//WebDriverWait wait = new WebDriverWait(BaseClass.getDriver(),20);
+wait.until(ExpectedConditions.visibilityOfAllElements(hotelCityList));
+System.out.println(hotelCityList.size());
+for(int i = 0; i< hotelCityList.size();i++)
+
+{
+System.out.println(hotelCityList.get(i));
+if(hotelCityList.get(i).getText().contains("Washington, DC (IAD-Washington Dulles Intl.)")){
+	hotelCityList.get(i).click();
+}}}
+
+
+
+public void startAndEndDate() {
+hotelDateBar.click();
+try {
+while(true) {
+	String currentMonth=calenderMonth.getText();
+	String currentYear=calenderYear.getText();
+	if(currentMonth.equals("August")&&currentYear.equals("2022")) {
+		break;
+	}calendernextMonthButton.click();
+}
+CommonMethods.selectCalendarDate(hotelStartDate, "24");
+//CommonMethods.selectCalendarDate(hotelStartDate,startDate );
+hotelendDate.click();
+while(true) {
+	String currentMonth=calenderMonth.getText();
+	String currentYear=calenderYear.getText();
+	if(currentMonth.equals("August")&&currentYear.equals("2022")) {
+		break;
+	}calendernextMonthButton.click();
+}
+CommonMethods.selectCalendarDate(hotelStartDate, "30");
+
+}catch(Exception e) {
+e.printStackTrace();
+}
+}
+
+
+
+
+public void enterNoOfAdults() {
+CommonMethods.sendText(noOfAdultsBarhotel, noOfAdults);
+
+}
+
+
+public void enterNoOfChildren() {
+CommonMethods.sendText(noOfChildrenBarhotel, noOfChildren);
+}
+
+
+public void enterEmail() {
+CommonMethods.sendText(UserEmailhotel, email);
+}
+
+public void clickSearchBookingcom() {
+CommonMethods.waitForClickability(searchBookinghotel);
+
+Assert.assertTrue(searchBookinghotel.isEnabled());
+CommonMethods.jsClick(searchBookinghotel);
+
+}
+
+public void flightButtonClick() {
+for(int i=0;i<travelCategoryList.size();i++){
+if(travelCategoryList.get(i).getText().contains("Flights")) {
+	travelCategoryList.get(i).click();
+}
+}}
+//flightButton.click();}
+
+
+public void flightclickRounTripButton() {
+
+wait.until(ExpectedConditions.visibilityOf(roundTripButton));
+
+for(int i=0;i<roundTripRadioButtonList.size();i++){
+if(roundTripRadioButtonList.get(i).getText().contains("Round Trip")) {
+	roundTripRadioButtonList.get(i).click();
+}
+}}
+
+
+public void flightFromCityselect() {
+flightFromCityOrAirport.click();
+flightFromCityOrAirport.sendKeys(flightFromCity);
+
+CommonMethods.wait(3);
+wait.until(ExpectedConditions.visibilityOfAllElements(flightFromCityAirportlistOptions));
+for(int i = 0; i< flightFromCityAirportlistOptions.size();i++)
+
+{
+System.out.println(flightFromCityAirportlistOptions.get(i));
+
+
+if(flightFromCityAirportlistOptions.get(i).getText().contains("Arlington County, DC (DCA Ronald Reagan Washington National Airport)")){
 	
+	flightFromCityAirportlistOptions.get(i).click();
+}
+}}
+public void flightToCity() {
+
+flightToCityOrAirportBar.click(); 
+flightToCityOrAirportBar.sendKeys(flightToCity); 
+// WebDriverWait wait2 = new WebDriverWait(BaseClass.getDriver(),20);
+CommonMethods.wait(3);
+wait.until(ExpectedConditions.visibilityOfAllElements(flightToCityOrAirportList));
+System.out.println(flightToCityOrAirportList.size());
+for(int i = 0; i< flightToCityOrAirportList.size();i++)
+
+if(flightToCityOrAirportList.get(i).getText().contains("Los Angeles, CA (LAX Los Angeles International Airport)")) {
+	wait.until(ExpectedConditions.visibilityOfAllElements(flightToCityOrAirportList.get(i)));
+
+	flightToCityOrAirportList.get(i).click(); }
+}
+
+
+
+
+
+
+public void selectflightstartEndDate() {
+
+flightDepartureDate.click();
+while(true) {
+String currentMonth=calenderMonth.getText();
+String currentYear=calenderYear.getText();
+if(currentMonth.equals(flightstartMonth)&&currentYear.equals(flightstartYear)) {
+	break;
+}else{calendernextMonthButton.click();}}
+
+
+CommonMethods.selectCalendarDate(allDates,flightStartDate );
+CommonMethods.getWaitObject();
+flightReturnDate.click();
+while(true) {
+String currentMonth=calenderMonth.getText();
+String currentYear=calenderYear.getText();
+if(currentMonth.equals(flightendMonth)&&currentYear.equals(flightendYear)) {
+	break;
+}calendernextMonthButton.click();
+}CommonMethods.selectCalendarDate(allDates,flightEndDate );}
+
+
+
+public void flightNoOfTravellers() {
+
+CommonMethods.sendText(flightNoOfTravellers, "2");}
+
+public void flightEmailEnter() {
+
+CommonMethods.sendText(flightUserEmail, email);}
+
+
+public void flightSearchButtonClick() {
+
+CommonMethods.waitForClickability(flightSearchCheapOAir);
+CommonMethods.wait(3);
+Assert.assertTrue(flightSearchCheapOAir.isEnabled());///////////////
+//CommonMethods.jsClick(flightSearchCheapOAir);
+
+
+
+}
+///////////////////Maria   end/////////////////////////////////////////////
 	
 	
 	
