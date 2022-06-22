@@ -1,5 +1,7 @@
 package pageFactory;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -23,7 +25,18 @@ public class ProductPage extends CommonMethods{
 	@FindBy(xpath = "//*[@id='page']/section/section/div[3]/div[1]")public WebElement matchingSearchResult;
 	
 	
-	
+	//Alip	06/21/2022
+		@FindBy(xpath = "//*[@id='page']/section/section/section/section/section[2]/section[1]/ul/li/section/div/a")
+		public List<WebElement> productList;
+		
+		@FindBy(xpath = "//*[contains(@class, 'color-swatches__list-link')]")
+		public List<WebElement> productOptionList;
+		
+		@FindBy(xpath = "//*[@id='single-purchase-selection']")
+		public WebElement productBuyNow;
+		
+		@FindBy(xpath = "//*[@id='product']/form/section/div[2]/aside/section/fieldset/section[1]/button")
+		public WebElement productAddToCart;
 	
 	
 	
