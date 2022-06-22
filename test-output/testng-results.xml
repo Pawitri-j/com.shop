@@ -1,29 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="1" total="2" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2022-06-21T20:55:28 EDT" name="Default suite" finished-at="2022-06-21T20:56:26 EDT" duration-ms="58717">
+  <suite started-at="2022-06-22T00:39:06 EDT" name="Default suite" finished-at="2022-06-22T00:39:36 EDT" duration-ms="30703">
     <groups>
     </groups>
-    <test started-at="2022-06-21T20:55:28 EDT" name="Default test" finished-at="2022-06-21T20:56:26 EDT" duration-ms="58717">
-      <class name="testCases.ShopTravel">
-        <test-method is-config="true" signature="setUp()[pri:0, instance:testCases.ShopTravel@469d003c]" started-at="2022-06-21T20:55:28 EDT" name="setUp" finished-at="2022-06-21T20:55:48 EDT" duration-ms="20338" status="PASS">
+    <test started-at="2022-06-22T00:39:06 EDT" name="Default test" finished-at="2022-06-22T00:39:36 EDT" duration-ms="30703">
+      <class name="testCases.CartTest">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testCases.CartTest@6d64b553]" started-at="2022-06-22T00:39:06 EDT" name="setUp" finished-at="2022-06-22T00:39:21 EDT" duration-ms="15092" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="ShopTravel_SearchCarRental_1()[pri:0, instance:testCases.ShopTravel@469d003c]" started-at="2022-06-21T20:55:48 EDT" name="ShopTravel_SearchCarRental_1" finished-at="2022-06-21T20:56:26 EDT" duration-ms="38316" status="FAIL">
-          <exception class="java.lang.AssertionError">
+        <test-method signature="Cart_VerifySubTotal_1()[pri:0, instance:testCases.CartTest@6d64b553]" started-at="2022-06-22T00:39:21 EDT" name="Cart_VerifySubTotal_1" finished-at="2022-06-22T00:39:36 EDT" duration-ms="14804" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchWindowException">
             <message>
-              <![CDATA[expected [true] but found [false]]]>
+              <![CDATA[no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=102.0.5005.115)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-DI2M575', ip: '192.168.1.226', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.115, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\alipj\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:62011}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 6659ba59294402340a8b36cf4b2bc49c
+*** Element info: {Using=xpath, value=//*[contains (@class, 'header-subnav__item-link')]}]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
-at org.testng.Assert.fail(Assert.java:110)
-at org.testng.Assert.failNotEquals(Assert.java:1413)
-at org.testng.Assert.assertTrue(Assert.java:56)
-at org.testng.Assert.assertTrue(Assert.java:66)
-at pageFactory.ShopTravelPage.SearchCarRental(ShopTravelPage.java:72)
-at testCases.ShopTravel.ShopTravel_SearchCarRental_1(ShopTravel.java:34)
+              <![CDATA[org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=102.0.5005.115)
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'DESKTOP-DI2M575', ip: '192.168.1.226', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '11.0.13'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 102.0.5005.115, chrome: {chromedriverVersion: 102.0.5005.61 (0e59bcc00cc4..., userDataDir: C:\Users\alipj\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:62011}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 6659ba59294402340a8b36cf4b2bc49c
+*** Element info: {Using=xpath, value=//*[contains (@class, 'header-subnav__item-link')]}
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:353)
+at org.openqa.selenium.remote.RemoteWebDriver.findElementsByXPath(RemoteWebDriver.java:432)
+at org.openqa.selenium.By$ByXPath.findElements(By.java:348)
+at org.openqa.selenium.remote.RemoteWebDriver.findElements(RemoteWebDriver.java:311)
+at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElements(DefaultElementLocator.java:85)
+at org.openqa.selenium.support.pagefactory.internal.LocatingElementListHandler.invoke(LocatingElementListHandler.java:36)
+at com.sun.proxy.$Proxy12.iterator(Unknown Source)
+at utilities.CommonMethods.clickValueFromListByText(CommonMethods.java:427)
+at pageFactory.CartPage.verifySubTotal(CartPage.java:87)
+at testCases.CartTest.Cart_VerifySubTotal_1(CartTest.java:31)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -54,11 +84,15 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- org.openqa.selenium.NoSuchWindowException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- ShopTravel_SearchCarRental_1 -->
-      </class> <!-- testCases.ShopTravel -->
+        </test-method> <!-- Cart_VerifySubTotal_1 -->
+        <test-method is-config="true" signature="destroy()[pri:0, instance:testCases.CartTest@6d64b553]" started-at="2022-06-22T00:39:36 EDT" name="destroy" finished-at="2022-06-22T00:39:36 EDT" duration-ms="745" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- destroy -->
+      </class> <!-- testCases.CartTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

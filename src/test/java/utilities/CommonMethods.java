@@ -446,5 +446,33 @@ public class CommonMethods extends PageInitializer {
 				}
 			}
 		}
+		
+		//Created by Alip	06/21/2022
+		//select value from list
+		public static void jsClickValueFromListByIndex(List<WebElement> elements, int index) {
+			try {
+			if(index <= elements.size()) {
+			WebElement element = elements.get(1);
+			CommonMethods.jsClick(element);
+			}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//Created by Alip	06/21/2022
+		//select value from list
+		public static void jsClickEveryValueFromList(List<WebElement> elements) {
+			try {
+				for (WebElement value : elements) {
+					if (value.isDisplayed()) {
+						jsClick(value);
+							break;
+						}
+					}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 
 }// class
