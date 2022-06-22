@@ -28,13 +28,12 @@ public class ShopTravel extends CommonMethods {
 	 
 	 
 	 // Alip	06/21/2022
-//		@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
-	 	@Test
+		@Test(priority = 1)
 		public void ShopTravel_SearchCarRental_1() {
 			st.SearchCarRental();
 		}
 
-	 ///////////////Maria///////////////
+	 //Maria 06/21/2022
 	 	@Test(priority = 1 ,retryAnalyzer = utilities.RetryAnalyzer.class)
 		public void Search_hotel_1() {
 
@@ -47,6 +46,8 @@ public class ShopTravel extends CommonMethods {
 			st.enterEmail();
 			st.clickSearchBookingcom();
 		}
+	 	
+	 	
 		@Test(priority = 2 ,retryAnalyzer = utilities.RetryAnalyzer.class)
 		public void Search_flight_2() {
 			st.clickShopTravelTab();
@@ -59,7 +60,7 @@ public class ShopTravel extends CommonMethods {
 			st.flightEmailEnter();
 			st.flightSearchButtonClick();
 		}
-///////////////////maria end//////////////////////////
+
 	 
 	 
 	 
