@@ -3,12 +3,16 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testCases.HomePageTest">
+      <class name="testCases.ShopTravel">
         <methods>
+<<<<<<< HEAD
           <include name="homePage_categoryTabFunctionality_3"/>
+=======
+          <include name="ShopTravel_SearchCarRental_1"/>
+>>>>>>> 87526529499b36b01928782f7c81fe31601965e9
           <include name="setUp"/>
         </methods>
-      </class> <!-- testCases.HomePageTest -->
+      </class> <!-- testCases.ShopTravel -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

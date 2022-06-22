@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <testng-results ignored="5" total="6" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
@@ -49,6 +50,37 @@ at pageFactory.HomePage.changeZipcode(HomePage.java:333)
 at testCases.HomePageTest.homePage_categoryTabFunctionality_3(HomePageTest.java:72)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
 at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+=======
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-06-21T20:55:28 EDT" name="Default suite" finished-at="2022-06-21T20:56:26 EDT" duration-ms="58717">
+    <groups>
+    </groups>
+    <test started-at="2022-06-21T20:55:28 EDT" name="Default test" finished-at="2022-06-21T20:56:26 EDT" duration-ms="58717">
+      <class name="testCases.ShopTravel">
+        <test-method is-config="true" signature="setUp()[pri:0, instance:testCases.ShopTravel@469d003c]" started-at="2022-06-21T20:55:28 EDT" name="setUp" finished-at="2022-06-21T20:55:48 EDT" duration-ms="20338" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="ShopTravel_SearchCarRental_1()[pri:0, instance:testCases.ShopTravel@469d003c]" started-at="2022-06-21T20:55:48 EDT" name="ShopTravel_SearchCarRental_1" finished-at="2022-06-21T20:56:26 EDT" duration-ms="38316" status="FAIL">
+          <exception class="java.lang.AssertionError">
+            <message>
+              <![CDATA[expected [true] but found [false]]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[java.lang.AssertionError: expected [true] but found [false]
+at org.testng.Assert.fail(Assert.java:110)
+at org.testng.Assert.failNotEquals(Assert.java:1413)
+at org.testng.Assert.assertTrue(Assert.java:56)
+at org.testng.Assert.assertTrue(Assert.java:66)
+at pageFactory.ShopTravelPage.SearchCarRental(ShopTravelPage.java:72)
+at testCases.ShopTravel.ShopTravel_SearchCarRental_1(ShopTravel.java:34)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+>>>>>>> 87526529499b36b01928782f7c81fe31601965e9
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
 at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:677)
 at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:221)
@@ -57,7 +89,11 @@ at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInv
 at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:194)
 at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
 at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+<<<<<<< HEAD
 at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+=======
+at java.base/java.util.ArrayList.forEach(ArrayList.java:1541)
+>>>>>>> 87526529499b36b01928782f7c81fe31601965e9
 at org.testng.TestRunner.privateRun(TestRunner.java:806)
 at org.testng.TestRunner.run(TestRunner.java:601)
 at org.testng.SuiteRunner.runTest(SuiteRunner.java:433)
@@ -75,11 +111,19 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
+<<<<<<< HEAD
           </exception> <!-- org.openqa.selenium.InvalidElementStateException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- homePage_categoryTabFunctionality_3 -->
       </class> <!-- testCases.HomePageTest -->
+=======
+          </exception> <!-- java.lang.AssertionError -->
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- ShopTravel_SearchCarRental_1 -->
+      </class> <!-- testCases.ShopTravel -->
+>>>>>>> 87526529499b36b01928782f7c81fe31601965e9
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
