@@ -28,7 +28,8 @@ public class ShopTravel extends CommonMethods {
 	 
 	 
 	 // Alip	06/21/2022
-		@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
+//		@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
+	 	@Test
 		public void ShopTravel_SearchCarRental_1() {
 			st.SearchCarRental();
 		}

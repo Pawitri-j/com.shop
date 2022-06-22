@@ -63,8 +63,8 @@ public class HomePage extends CommonMethods {
 	@FindBy(xpath = "//*[@id='new-header']/section/section[2]/div[2]/div/div[3]/section/section/section[2]/a")
 	public WebElement paymentUnderCartButton;
 	
-//	@FindBy(xpath = "//*[@id='main-menu']/li/button")
-//	public List<WebElement> categoriesList;
+	@FindBy(xpath = "//*[@id='main-menu']/li/button")
+	public List<WebElement> categoriesListButton;
 	
 	@FindBy(xpath = "//*[contains (@class, 'header-subnav__item-link')]")
 	public List<WebElement> bigCategoriesList;

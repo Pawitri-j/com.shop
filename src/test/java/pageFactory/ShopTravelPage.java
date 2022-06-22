@@ -57,9 +57,12 @@ public class ShopTravelPage extends CommonMethods{
 	@FindBy(xpath = "//*[@id='car-from-city-type-ahead']/li")
 	public static WebElement airportDropDown;
 	
+	
+	
     // Alip	06/21/2022
 	public void SearchCarRental() {
 		h.shopTravelButton.click();
+		CommonMethods.waitForVisibility(carButton);
 		carButton.click();
 		
 		try {
