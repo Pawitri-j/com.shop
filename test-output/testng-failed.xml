@@ -5,12 +5,8 @@
     <classes>
       <class name="testCases.ShopTravel">
         <methods>
-<<<<<<< HEAD
-          <include name="homePage_categoryTabFunctionality_3"/>
-=======
-          <include name="ShopTravel_SearchCarRental_1"/>
->>>>>>> 87526529499b36b01928782f7c81fe31601965e9
           <include name="setUp"/>
+          <include name="Search_flight_2"/>
         </methods>
       </class> <!-- testCases.ShopTravel -->
     </classes>

@@ -49,25 +49,24 @@ public class HomePageTest extends CommonMethods {
 		h.checkIfLogoNavigateToHomePage();
 	}
 	
-	//Armeena 06/20/22
 	
-	@Test
-	public void homePage_categoryTabFunctionality_1() {
+	//Armeena 06/20/22
+	@Test(priority = 4, retryAnalyzer = utilities.RetryAnalyzer.class)
+	public void homePage_categoryTabFunctionality_4() {
 
-		CommonMethods.dismissNonJsPopUp(h.dismissButton);
 		h.categoriesTabIsNavigate();
 
 	}
 	
-	@Test
-	public void homePage_tabsUnderSearchBarFunctionality_2() {
+	@Test(priority = 5, retryAnalyzer = utilities.RetryAnalyzer.class)
+	public void homePage_tabsUnderSearchBarFunctionality_5() {
 
 		h.checkEachTabUnderSearchBar();
 
 	}
 
-	@Test
-	public void homePage_categoryTabFunctionality_3() {
+	@Test(priority = 6, retryAnalyzer = utilities.RetryAnalyzer.class)
+	public void homePage_categoryTabFunctionality_6() {
 
 		h.changeZipcode();
 

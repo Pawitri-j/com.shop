@@ -452,10 +452,13 @@ public class CommonMethods extends PageInitializer {
 		//select value from list
 		public static void jsClickValueFromListByIndex(List<WebElement> elements, int index) {
 			try {
-			if(index <= elements.size()) {
-			WebElement element = elements.get(1);
-			CommonMethods.jsClick(element);
-			}
+				for(int i = 0 ; i < elements.size();i++) {
+					if(index <= elements.size()) {
+						WebElement element = elements.get(index);
+						CommonMethods.jsClick(element);
+						}
+				}
+			
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
@@ -477,4 +480,12 @@ public class CommonMethods extends PageInitializer {
 		}
 
 
+		//added by Pawitri 60/21/22
+		public static void waitVisibilityOfList(List<WebElement> listOfElement) {
+			
+			WebDriverWait wait = new WebDriverWait(BaseClass.getDriver(),20);
+			wait.until(ExpectedConditions.visibilityOfAllElements(listOfElement));
+			
+		}
+		
 }// class

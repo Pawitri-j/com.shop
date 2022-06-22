@@ -28,8 +28,26 @@ public class HomePage extends CommonMethods {
 	public WebElement dismissButton;
 	@FindBy(xpath = "//*[@id='new-header']/section/section[2]/div[2]/div/div[1]/button")
 	public WebElement signInIcon;
-
-	// Pawitri - Search Functionality Test cases
+	// Alip 06/21/2022	
+//	@FindBy(xpath = "//*[@id=\"new-header\"]/section/section[2]/div[2]/section/nav/ul/li[4]/a")
+//	public WebElement shopTravelButton;
+	
+//	@FindBy(xpath = "//*[@id='new-header']/section/section[1]/div[2]/button")
+//	public WebElement categoriesButton;
+	
+//	@FindBy(xpath = "//*[@id='new-header']/section/section[2]/div[2]/div/div[3]/button")
+//	public WebElement cartButton;
+	
+	@FindBy(xpath = "//*[@id='new-header']/section/section[2]/div[2]/div/div[3]/section/section/section[2]/a")
+	public WebElement paymentUnderCartButton;
+	
+	@FindBy(xpath = "//*[@id='main-menu']/li/button")
+	public List<WebElement> categoriesListButton;
+	
+	@FindBy(xpath = "//*[contains (@class, 'header-subnav__item-link')]")
+	public List<WebElement> bigCategoriesList;
+	
+	// Pawitri 06/16/2022 - Search Functionality Test cases
 	@FindBy(xpath = "//*[@id='quick-search-input']")
 	public WebElement searchBar;
 	@FindBy(xpath = "//*[@id='search-form']/div/div[1]/div")
@@ -49,27 +67,6 @@ public class HomePage extends CommonMethods {
 	// HomePage Test
 	@FindBy(xpath = "//*[@id='main-menu']/li")
 	public List<WebElement> categoryList;
-	
-	// Alip 06/21/2022	
-//	@FindBy(xpath = "//*[@id=\"new-header\"]/section/section[2]/div[2]/section/nav/ul/li[4]/a")
-//	public WebElement shopTravelButton;
-	
-//	@FindBy(xpath = "//*[@id='new-header']/section/section[1]/div[2]/button")
-//	public WebElement categoriesButton;
-	
-//	@FindBy(xpath = "//*[@id='new-header']/section/section[2]/div[2]/div/div[3]/button")
-//	public WebElement cartButton;
-	
-	@FindBy(xpath = "//*[@id='new-header']/section/section[2]/div[2]/div/div[3]/section/section/section[2]/a")
-	public WebElement paymentUnderCartButton;
-	
-	@FindBy(xpath = "//*[@id='main-menu']/li/button")
-	public List<WebElement> categoriesListButton;
-	
-	@FindBy(xpath = "//*[contains (@class, 'header-subnav__item-link')]")
-	public List<WebElement> bigCategoriesList;
-
-	// Pawitri 06/16/2022
 
 	public void checkSuggestionList() {
 
@@ -193,12 +190,12 @@ public class HomePage extends CommonMethods {
 
 	public void homePageBannerName() {
 
-		ArrayList<String> nameOfBanner = new ArrayList<>(Arrays.asList("Hot New Products", "For your Little Miracle",
+		ArrayList<String> nameOfBanner = new ArrayList<>(Arrays.asList("Hot", "For your Little Miracle",
 				"Layered Custom Capsule Collection", "Best of Web Prices & Instant Cashback!",
 				"Stay Healthy with Essential 9!", "Cleaning & Health Have Never Been More Important"));
 
 		for (int i = 0; i < homepageBannerList.size(); i++) {
-
+			System.out.println(homepageBannerList.get(i).getText());
 			Assert.assertTrue(homepageBannerList.get(i).getText().contains(nameOfBanner.get(i)));
 		}
 	}
@@ -231,8 +228,9 @@ public class HomePage extends CommonMethods {
 
 	}
 	
-	//Armeena 06/20/22
 	
+	
+	//Armeena 06/20/22
 	@FindBy(xpath = "//*[@id=\"new-header\"]/section/section[2]/div[2]/section/nav/ul/li[4]/a")
 	public WebElement shopTravelButton;
 
@@ -316,9 +314,12 @@ public class HomePage extends CommonMethods {
 
 			homePageUrl = BaseClass.getDriver().getCurrentUrl();
 			categoriesTabLinkList.get(i).click();
-
+			
 			currentTabUrl = BaseClass.getDriver().getCurrentUrl();
 			Assert.assertFalse(homePageUrl.equals(currentTabUrl));
+			
+			CommonMethods.dismissNonJsPopUp(h.dismissButton);
+			
 			CommonMethods.waitForVisibility(categoriesButton);
 			categoriesButton.click();
 
@@ -353,6 +354,7 @@ public class HomePage extends CommonMethods {
 		zipcodeBox.sendKeys(BaseClass.getPropertyString("zipCode"));
 		searchIcon.click();
 		BaseClass.getDriver().navigate().refresh();
+		CommonMethods.waitForVisibility(verifyZipcode);
 		Assert.assertTrue(verifyZipcode.getText().contains(BaseClass.getPropertyString("zipCode")));
 		System.out.println("Passed");
 	}
