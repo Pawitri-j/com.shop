@@ -1,5 +1,7 @@
 package pageFactory;
 
+import java.util.List;
+
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -65,11 +67,8 @@ public class CartPage extends CommonMethods{
 	@FindBy(xpath = "//*[@id='shopping-cart']/section/section[1]/section[1]/div/span[2]")
 	public static WebElement storeTotal;
 	
-	@FindBy(xpath = "//*[@id='shopping-cart']/section/section[1]/section[1]/ul/li[2]/section/div[2]/form[2]/button")
-	public static WebElement secondRemoveButton;
-	
-	@FindBy(xpath = "//*[@id='shopping-cart']/section/section[1]/section[1]/ul/li[1]/section/div[2]/form[2]/button")
-	public static WebElement firstRemoveButton;
+	@FindBy(xpath = "//*[@id='shopping-cart']/section/section[1]/section[1]/ul/li/section/div[2]/form[2]/button")
+	public static List<WebElement> removeButton;
 	
 	@FindBy(xpath = "//*[@id=\"shopping-cart\"]/section/section[1]/section/ul/li/section/div[2]/form[1]/button")
 	public WebElement saveForLater;
@@ -87,18 +86,25 @@ public class CartPage extends CommonMethods{
 		CommonMethods.clickValueFromListByText(h.categoriesListButton, "Home");
 		CommonMethods.clickValueFromListByText(h.bigCategoriesList, "Garden");
 	
-		CommonMethods.waitForVisibility(firstAddToCartButton);
-		CommonMethods.jsClick(firstAddToCartButton);
-		CommonMethods.waitForVisibility(closeCartButton);
-		CommonMethods.jsClick(closeCartButton);
-		CommonMethods.jsClick(thirdAddToCartButton);
+		CommonMethods.jsClickValueFromListByIndex(p.productList, 0);
+		CommonMethods.jsClick(p.productBuyNow);
+		CommonMethods.waitForVisibility(p.productAddToCart);
+		CommonMethods.jsClick(p.productAddToCart);
+		CommonMethods.waitForVisibility(viewCartButton);
+		
+		BaseClass.getDriver().navigate().back();
+		
+		CommonMethods.jsClickValueFromListByIndex(p.productList, 2);
+		CommonMethods.jsClick(p.productBuyNow);
+		CommonMethods.waitForVisibility(p.productAddToCart);
+		CommonMethods.jsClick(p.productAddToCart);
+		CommonMethods.waitForVisibility(viewCartButton);
 		CommonMethods.jsClick(viewCartButton);
 
 		CommonMethods.waitForVisibility(subTotal);
 		Assert.assertTrue(subTotal.getText().contains(storeTotal.getText()));
 		
-		secondRemoveButton.click();
-		firstRemoveButton.click();
+		CommonMethods.jsClickEveryValueFromList(removeButton);
 		
 		
 	}
@@ -111,39 +117,27 @@ public class CartPage extends CommonMethods{
 		CommonMethods.clickValueFromListByText(h.bigCategoriesList, "Bracelets");
 		CommonMethods.clickValueFromListByText(h.bigCategoriesList, "Chain");
 		
-		try {
-		CommonMethods.waitForVisibility(firstChooseOption);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		CommonMethods.jsClick(firstChooseOption);
-		try {
-		CommonMethods.waitForVisibility(firstOption);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		CommonMethods.jsClickValueFromListByIndex(p.productList, 0);
+		CommonMethods.jsClickValueFromListByIndex(p.productOptionList, 0);
 		
-		CommonMethods.jsClick(firstOption);
 		CommonMethods.jsClick(addToCartButton);
 		CommonMethods.waitForVisibility(viewCartButton);
 		CommonMethods.jsClick(viewCartButton);
 		CommonMethods.waitForVisibility(saveForLater);
 		CommonMethods.jsClick(saveForLater);
-		
-		
-		
-		BaseClass.tearDown();
-//		driver = BaseClass.openBrowserAndGetURL();
-		BaseClass.openBrowserAndGetURL();
-		
-		try {	
-			h.dismissButton.click();
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		h.cartButton.click();
-		h.paymentUnderCartButton.click();
+	
+//		BaseClass.tearDown();
+////		driver = BaseClass.openBrowserAndGetURL();
+//		BaseClass.openBrowserAndGetURL();
+//		
+//		try {	
+//			h.dismissButton.click();
+//		}catch(Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//		h.cartButton.click();
+//		h.paymentUnderCartButton.click();
 				
 		Assert.assertTrue(saveForLaterDislay.isDisplayed());
 	}
