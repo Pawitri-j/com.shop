@@ -1,15 +1,13 @@
 package pageFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.List;
 
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import utilities.BaseClass;
@@ -23,6 +21,8 @@ public class HomePage extends CommonMethods {
 		PageFactory.initElements(BaseClass.getDriver(), this);
 	}
 
+	 private WebDriver driver = BaseClass.getDriver();
+	 
 	// General
 	@FindBy(xpath = "//*[@id='promo-new-session']/button")
 	public WebElement dismissButton;
@@ -75,13 +75,13 @@ public class HomePage extends CommonMethods {
 			CommonMethods.waitForVisibility(firstMagnifyIcon);
 			for (int i = 0; i < suggestionList.size(); i++) {
 				// System.out.println(h.suggestionList.get(i).getText());
-				Assert.assertTrue(suggestionList.get(i).getText().contains(Constants.SEARCH_SUGGESTION));
+				Assert.assertTrue(suggestionList.get(i).getText().contains(BaseClass.getPropertyString("searchWord")));
 			}
 
 		} catch (StaleElementReferenceException e) { // because the suggestion list will come up and then gone for
 														// non-matching word
 			e.printStackTrace();
-			System.out.println("item that you searched is not matching with any product");
+			System.out.println(BaseClass.getPropertyString("warning"));
 		}
 	}
 
@@ -100,7 +100,7 @@ public class HomePage extends CommonMethods {
 
 			searchIconButton.click();
 
-			if (departmentText.contains(Constants.ALL_DEPARTMENTS_TEXT)) {
+			if (departmentText.contains(BaseClass.getPropertyString("allDepartmentText"))) {
 				CommonMethods.scrollToElement(h.shopLocal);
 				Assert.assertTrue(h.shopLocal.isDisplayed());
 			} else {
@@ -129,10 +129,10 @@ public class HomePage extends CommonMethods {
 
 			searchIconButton.click();
 
-			if (departmentText.contains(Constants.ALL_DEPARTMENTS_TEXT)) {
+			if (departmentText.contains(BaseClass.getPropertyString("allDepartmentText"))) {
 				CommonMethods.scrollToElement(h.shopLocal);
 				Assert.assertTrue(h.shopLocal.isDisplayed());
-			} else if (departmentText.contains(Constants.GIFTS_DEPARTMENT)) {
+			} else if (departmentText.contains(BaseClass.getPropertyString("giftDepartmentText"))) {
 				Assert.assertFalse(false); // this one failed but need to test on another one as well
 			} else {
 				// User should be navigated to the department being tested
@@ -151,16 +151,16 @@ public class HomePage extends CommonMethods {
 
 		try {
 			searchResultText = p.matchingSearchResult.getText();
-			if (searchResultText.contains(Constants.SEARCH_INPUT)
-					&& searchResultText.contains(Constants.MATCHING_SEARCH_RESULT)) {
-				Assert.assertTrue(searchResultText.contains(Constants.MATCHING_SEARCH_RESULT));
-				Assert.assertTrue(searchResultText.contains(Constants.SEARCH_INPUT));
+			if (searchResultText.contains(BaseClass.getPropertyString("searchInput"))
+					&& searchResultText.contains(BaseClass.getPropertyString("matchingSearchResult"))) {
+				Assert.assertTrue(searchResultText.contains(BaseClass.getPropertyString("matchingSearchResult")));
+				Assert.assertTrue(searchResultText.contains(BaseClass.getPropertyString("searchInput")));
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			if (p.notMatchingSearchResult1.isDisplayed() || p.notMatchingSearchResult2.isDisplayed()) {
-				System.out.println(Constants.NOT_MATCHING_SEARCH_RESULT);
+				System.out.println(BaseClass.getPropertyString("notMatchingResult"));
 			}
 
 		}
@@ -185,45 +185,45 @@ public class HomePage extends CommonMethods {
 	// Verify if Home Page Contains 6 Category banner
 	public void homePageBannerListSIze6() {
 
-		Assert.assertTrue(homepageBannerList.size() == 6);
+		Assert.assertTrue(homepageBannerList.size() == BaseClass.getPropertyInteger("homePageBannerSize"));
 	}
 
 	public void homePageBannerName() {
 
-		ArrayList<String> nameOfBanner = new ArrayList<>(Arrays.asList("Hot", "For your Little Miracle",
-				"Layered Custom Capsule Collection", "Best of Web Prices & Instant Cashback!",
-				"Stay Healthy with Essential 9!", "Cleaning & Health Have Never Been More Important"));
+//		ArrayList<String> nameOfBanner = new ArrayList<>(Arrays.asList("Hot", "For your Little Miracle",
+//				"Layered Custom Capsule Collection", "Best of Web Prices & Instant Cashback!",
+//				"Stay Healthy with Essential 9!", "Cleaning & Health Have Never Been More Important"));
 
 		for (int i = 0; i < homepageBannerList.size(); i++) {
 			System.out.println(homepageBannerList.get(i).getText());
-			Assert.assertTrue(homepageBannerList.get(i).getText().contains(nameOfBanner.get(i)));
+			Assert.assertTrue(homepageBannerList.get(i).getText().contains(Constants.NAME_OF_BANNERS.get(i)));
 		}
 	}
 
 	public void scrollDownThenClickBackToTopButton() {
 		CommonMethods.scrollToElement(shopLocal);
-		CommonMethods.takeScreenshot_pass("BottomOfHomePage");
+		CommonMethods.takeScreenshot_pass(BaseClass.getPropertyString("bottomOfPageFileName"));
 		backToTopButton.click();
 		
 		CommonMethods.wait(1);
 		CommonMethods.waitForVisibility(shopConsultant);
-		CommonMethods.takeScreenshot_pass("TopOfHomePage");
+		CommonMethods.takeScreenshot_pass(BaseClass.getPropertyString("topOfPageFileName"));
 	}
 	
 	public void checkIfLogoNavigateToHomePage() {
 		
-		String homePageURL = BaseClass.getDriver().getCurrentUrl();
+		String homePageURL = driver.getCurrentUrl();
 		
 		for (int i = 0; i < h.underSearchBarTabList.size(); i++) {
 		
 			h.underSearchBarTabList.get(i).click();
-			String clickedPageURL = BaseClass.getDriver().getCurrentUrl();
+			String clickedPageURL = driver.getCurrentUrl();
 			
 			Assert.assertFalse(homePageURL.equals(clickedPageURL));
 			
 			h.shopLogo.click();
 			
-			Assert.assertTrue(BaseClass.getDriver().getCurrentUrl().equals(homePageURL));
+			Assert.assertTrue(driver.getCurrentUrl().equals(homePageURL));
 		}
 
 	}
@@ -288,21 +288,20 @@ public class HomePage extends CommonMethods {
 
 		CommonMethods.jsClick(categoriesButton);
 
-		WebDriverWait wait = new WebDriverWait(BaseClass.getDriver(), 20);
-		wait.until(ExpectedConditions.visibilityOfAllElements(categoriesWithSubList));
-		wait.until(ExpectedConditions.elementToBeClickable(categoriesWithSubList.get(0)));
+		CommonMethods.waitVisibilityOfList(categoriesWithSubList);
+		CommonMethods.waitForClickability(categoriesWithSubList.get(0));
 		
 		if (arrowList.get(0).isDisplayed()) {
 			for (int i = 0; i < categoriesWithSubList.size(); i++) {
 
 				category = categoriesWithSubList.get(i).getText();
 
-				System.out.println("Cat:  " + category);
+				System.out.println(category);
 
 				CommonMethods.jsClick(categoriesWithSubList.get(i));
 				categoryHeader = categoriesHeaderList.get(i).getText();
 
-				System.out.println("Header:  " + categoryHeader);
+				System.out.println(categoryHeader);
 				Assert.assertTrue(category.contains(categoryHeader));
 				CommonMethods.jsClick(dismissSubCategoriesList.get(i));
 
@@ -335,13 +334,13 @@ public class HomePage extends CommonMethods {
 
 			tabsMenu = underSearchBarTabsList.get(i).getText();
 
-			System.out.println("Menu:  " + tabsMenu);
+			System.out.println(tabsMenu);
 
 			CommonMethods.jsClick(underSearchBarTabsList.get(i));
 
 			tabsHeader = underSearchBarTabsList.get(i).getText();
 
-			System.out.println("Header:  " + tabsHeader);
+			System.out.println(tabsHeader);
 			Assert.assertTrue(tabsMenu.contains(tabsHeader));
 
 		}
@@ -356,7 +355,7 @@ public class HomePage extends CommonMethods {
 		BaseClass.getDriver().navigate().refresh();
 		CommonMethods.waitForVisibility(verifyZipcode);
 		Assert.assertTrue(verifyZipcode.getText().contains(BaseClass.getPropertyString("zipCode")));
-		System.out.println("Passed");
+		
 	}
 	
 	

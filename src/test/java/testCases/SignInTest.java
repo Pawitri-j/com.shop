@@ -2,6 +2,7 @@ package testCases;
 
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -10,7 +11,7 @@ import utilities.CommonMethods;
 
 public class SignInTest extends CommonMethods {
 
-	public WebDriver driver;
+	private WebDriver driver;
 
 	@BeforeMethod
 	public void setUp() {
@@ -20,15 +21,15 @@ public class SignInTest extends CommonMethods {
 		CommonMethods.dismissNonJsPopUp(h.dismissButton);
 	}
 
-//	@AfterClass
-//	public void destroy() {
-//		BaseClass.tearDown();
-//	}
+	@AfterClass
+	public void destroy() {
+		BaseClass.tearDown();
+	}
 
 	
-	//////////Maria////////////
+	//Maria 06/21/22
 	
-	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
+	@Test(priority = 1)
 	public void SignIn_ValidUserNameAndPassword_1()  {
 		h.signInIcon.click();
 
@@ -43,7 +44,6 @@ public class SignInTest extends CommonMethods {
 	
 	
 	
-	//////////////Maria/  end/////////////////////
 	
 	
 	

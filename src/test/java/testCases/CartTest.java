@@ -11,38 +11,32 @@ import utilities.CommonMethods;
 public class CartTest extends CommonMethods {
 
 	public WebDriver driver;
-    @BeforeMethod
-    public void setUp() {
 
-        driver = BaseClass.openBrowserAndGetURL();
+	@BeforeMethod
+	public void setUp() {
 
-      CommonMethods.dismissNonJsPopUp(h.dismissButton);
-    }
+		driver = BaseClass.openBrowserAndGetURL();
+
+		CommonMethods.dismissNonJsPopUp(h.dismissButton);
+	}
 
     @AfterClass
     public void destroy() {
         BaseClass.tearDown();    
         }
-    
-    // Alip	06/21/2022
+
+	// Alip 06/21/2022
 	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
-	public void Cart_VerifySubTotal_1() {
+	public void Cart_VerifySaveForLater_1() {
+		c.verifySaveForLater();
+
+	}
+
+	// Alip 06/21/2022
+	@Test(priority = 2, retryAnalyzer = utilities.RetryAnalyzer.class)
+	public void Cart_VerifySubTotal_2() {
 		c.verifySubTotal();
 
 	}
-	
-    // Alip	06/21/2022
-	@Test(priority = 2, retryAnalyzer = utilities.RetryAnalyzer.class)
-	public void Cart_VerifySaveForLater_2() {
-		c.verifySaveForLater();
-		
-	}
-    
-   
-	
-	
-	
-	
-	
 
 }// class

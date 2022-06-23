@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import utilities.BaseClass;
 import utilities.CommonMethods;
 
-public class ShopTravel extends CommonMethods {
+public class ShopTravelTest extends CommonMethods {
 
 	public WebDriver driver;
 
@@ -21,10 +21,10 @@ public class ShopTravel extends CommonMethods {
 	    }
 
 	 	
-//	    @AfterClass
-//	    public void destroy() {
-//	        BaseClass.tearDown();
-//	    }
+	    @AfterClass
+	    public void destroy() {
+	        BaseClass.tearDown();
+	    }
 	 
 	 
 	 // Alip	06/21/2022
@@ -34,8 +34,8 @@ public class ShopTravel extends CommonMethods {
 		}
 
 	 //Maria 06/21/2022
-	 	@Test(priority = 1 ,retryAnalyzer = utilities.RetryAnalyzer.class)
-		public void Search_hotel_1() {
+	 	@Test(priority = 2 ,retryAnalyzer = utilities.RetryAnalyzer.class)
+		public void Search_hotel_2() {
 
 			st.clickShopTravelTab();
 			st.clickHotelButton();
@@ -48,8 +48,8 @@ public class ShopTravel extends CommonMethods {
 		}
 	 	
 	 	
-		@Test(priority = 2 ,retryAnalyzer = utilities.RetryAnalyzer.class)
-		public void Search_flight_2() {
+		@Test(priority = 3 ,retryAnalyzer = utilities.RetryAnalyzer.class)
+		public void Search_flight_3() {
 			st.clickShopTravelTab();
 			st.flightButtonClick();
 			st.flightclickRounTripButton();
