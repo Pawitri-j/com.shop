@@ -2,6 +2,7 @@ package pageFactory;
 
 import java.util.List;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -17,8 +18,9 @@ public class ProductPage extends CommonMethods{
 		PageFactory.initElements(BaseClass.getDriver(), this);
 	}
 	
+	private WebDriver driver = BaseClass.getDriver();
 	
-	//Pawitri - Search Functionality Test cases
+	//Pawitri 06/16/22 - Search Functionality Test cases
 	@FindBy(xpath = "//*[@id='page']/section/section/div[2]/div/ul/li[2]/a/span") public WebElement productDepartmentName;
 	@FindBy(xpath = "//*[@id='page']/section/section/section[1]/div/div/h2") public WebElement notMatchingSearchResult1;
 	@FindBy(xpath = "//*[@id='page']/section/section/div[3]/div[1]/span[1]") public WebElement notMatchingSearchResult2;

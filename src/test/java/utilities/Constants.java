@@ -1,5 +1,8 @@
 package utilities;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Constants {
 	
 	//General
@@ -8,28 +11,20 @@ public class Constants {
 	public static final int EXPLICIT_WAIT_TIME =30;
 	
 	
-	//Pawitri - Search Functionality Test cases
+	
 	public static final String SCREENSHOT_FILEPATH = "target/ScreenShotsGeneral/";
 	
 	public static final String SCREENSHOT_FILEPATH_FAIL = "target/ScreenShotsForFail/";
 	
 	public static final String SCREENSHOT_FILEPATH_PASS = "target/ScreenShotsForPass/";
 	
-	public static final String ALL_DEPARTMENTS_TEXT = "All Departments";
 	
-	public static final String GIFTS_DEPARTMENT = "Gifts";
 	
-	public static final String SEARCH_SUGGESTION = "car";
-	
-	public static final String SEARCH_INPUT = "book";
-	
-	public static final String MATCHING_SEARCH_RESULT = "You searched";
-	
-	public static final String NOT_MATCHING_SEARCH_RESULT ="No matching product";
-			
-			
-			
-			
+	//Home Page Test		
+	public static final ArrayList<String> NAME_OF_BANNERS 
+	= new ArrayList<>(Arrays.asList("Hot", "For your Little Miracle",
+			"Layered Custom Capsule Collection", "Best of Web Prices & Instant Cashback!",
+			"Stay Healthy with Essential 9!", "Cleaning & Health Have Never Been More Important"));		
 			
 	
 }//class

@@ -2,6 +2,7 @@ package pageFactory;
 
 import java.util.List;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -21,6 +22,7 @@ public class CartPage extends CommonMethods{
 		
 	}
 	
+	private WebDriver driver = BaseClass.getDriver();
 	
 	@FindBy(xpath = "//*[@id=\"main-menu\"]/li[9]/button")
 	public static WebElement homeUnderCategories;
@@ -83,18 +85,18 @@ public class CartPage extends CommonMethods{
 	public void verifySubTotal() {
 		CommonMethods.waitForVisibility(h.categoriesButton).click();
 
-		CommonMethods.clickValueFromListByText(h.categoriesListButton, "Home");
-		CommonMethods.clickValueFromListByText(h.bigCategoriesList, "Garden");
+		CommonMethods.clickValueFromListByText(h.categoriesListButton, BaseClass.getPropertyString("subCategoryForSubtotal1"));
+		CommonMethods.clickValueFromListByText(h.bigCategoriesList, BaseClass.getPropertyString("subCategoryForSubtatal2"));
 	
-		CommonMethods.jsClickValueFromListByIndex(p.productList, 0);
+		CommonMethods.jsClickValueFromListByIndex(p.productList, BaseClass.getPropertyInteger("subTotalProductIndex1"));
 		CommonMethods.jsClick(p.productBuyNow);
 		CommonMethods.waitForVisibility(p.productAddToCart);
 		CommonMethods.jsClick(p.productAddToCart);
 		CommonMethods.waitForVisibility(viewCartButton);
 		
-		BaseClass.getDriver().navigate().back();
+		driver.navigate().back();
 		
-		CommonMethods.jsClickValueFromListByIndex(p.productList, 2);
+		CommonMethods.jsClickValueFromListByIndex(p.productList, BaseClass.getPropertyInteger("subTotalProductIndex2"));
 		CommonMethods.jsClick(p.productBuyNow);
 		CommonMethods.waitForVisibility(p.productAddToCart);
 		CommonMethods.jsClick(p.productAddToCart);
@@ -103,41 +105,28 @@ public class CartPage extends CommonMethods{
 
 		CommonMethods.waitForVisibility(subTotal);
 		Assert.assertTrue(subTotal.getText().contains(storeTotal.getText()));
-		
-		CommonMethods.jsClickEveryValueFromList(removeButton);
-		
-		
+	
 	}
 	
     // Alip	06/21/2022
 	public void verifySaveForLater() {
 		CommonMethods.waitForVisibility(h.categoriesButton).click();
 
-		CommonMethods.clickValueFromListByText(h.categoriesListButton, "Jewelry");
-		CommonMethods.clickValueFromListByText(h.bigCategoriesList, "Bracelets");
-		CommonMethods.clickValueFromListByText(h.bigCategoriesList, "Chain");
+		CommonMethods.clickValueFromListByText(h.categoriesListButton, BaseClass.getPropertyString("saveForLaterSubcategory1"));
+		CommonMethods.clickValueFromListByText(h.bigCategoriesList, BaseClass.getPropertyString("saveForLaterSubcategory2"));
+		CommonMethods.clickValueFromListByText(h.bigCategoriesList, BaseClass.getPropertyString("saveForLaterSubcategory3"));
 		
-		CommonMethods.jsClickValueFromListByIndex(p.productList, 0);
-		CommonMethods.jsClickValueFromListByIndex(p.productOptionList, 0);
+		CommonMethods.jsClickValueFromListByIndex(p.productList, BaseClass.getPropertyInteger("saveForLaterProductIndex"));
+		CommonMethods.jsClickValueFromListByIndex(p.productOptionList, BaseClass.getPropertyInteger("saveForlaterOptionIndex"));
 		
+		CommonMethods.waitForVisibility(addToCartButton);
 		CommonMethods.jsClick(addToCartButton);
 		CommonMethods.waitForVisibility(viewCartButton);
 		CommonMethods.jsClick(viewCartButton);
 		CommonMethods.waitForVisibility(saveForLater);
 		CommonMethods.jsClick(saveForLater);
 	
-//		BaseClass.tearDown();
-////		driver = BaseClass.openBrowserAndGetURL();
-//		BaseClass.openBrowserAndGetURL();
-//		
-//		try {	
-//			h.dismissButton.click();
-//		}catch(Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		h.cartButton.click();
-//		h.paymentUnderCartButton.click();
+
 				
 		Assert.assertTrue(saveForLaterDislay.isDisplayed());
 	}

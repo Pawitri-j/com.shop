@@ -1,6 +1,7 @@
 package pageFactory;
 
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -17,7 +18,9 @@ public class SignInPage extends CommonMethods{
 		PageFactory.initElements(BaseClass.getDriver(), this);
 	}
 	
-////////////////////Mariaaaaa///////////////////////////
+	private WebDriver driver = BaseClass.getDriver();
+	
+	//Maria
 	@FindBy(xpath="//a[contains(text(),'Sign In')]")public WebElement signInTab;
 
 
@@ -38,9 +41,6 @@ public class SignInPage extends CommonMethods{
 
 	@FindBy(xpath="//*[@id='recaptcha-anchor']/div[1]")public WebElement captcha;
 
-	String validUserName = "kapow1@gmail.com";
-	String validPassword="123abcd";
-
 	public void clicksigninTab() {
 
 		CommonMethods.jsClick(signInTab);
@@ -50,11 +50,11 @@ public class SignInPage extends CommonMethods{
 	}
 
 	public void enterEmailAddress() {
-		CommonMethods.sendText(signInemailAddress, validUserName);}
+		CommonMethods.sendText(signInemailAddress, BaseClass.getPropertyString("validUserName"));}
 
 
 	public void enterPassword() {
-		CommonMethods.sendText(signInPassword, validPassword);}
+		CommonMethods.sendText(signInPassword, BaseClass.getPropertyString("validPassword"));}
 
 
 	public void clickSignInSubmitBtn() {
@@ -70,8 +70,7 @@ public class SignInPage extends CommonMethods{
 	}
 
 	
-	
-////////////////////Mariaaaaa///////////////////////////
+
 
 	
 	

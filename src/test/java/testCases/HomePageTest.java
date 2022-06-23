@@ -1,6 +1,7 @@
 package testCases;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -21,10 +22,10 @@ public class HomePageTest extends CommonMethods {
 		CommonMethods.dismissNonJsPopUp(h.dismissButton);
 	}
 
-//	@AfterClass
-//	public void destroy() {
-//		BaseClass.tearDown();
-//	}
+	@AfterClass
+	public void destroy() {
+		BaseClass.tearDown();
+	}
 	
 
 	// Sumetta 6/18/2022

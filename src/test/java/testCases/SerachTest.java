@@ -25,25 +25,25 @@ public class SerachTest extends CommonMethods {
 		CommonMethods.dismissNonJsPopUp(h.dismissButton);
 	}
 
-//	@AfterClass
-//	public void destroy() {
-//		BaseClass.tearDown();
-//	}
+	@AfterClass
+	public void destroy() {
+		BaseClass.tearDown();
+	}
 
 	// Pawitri 06/16/2022
-	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
+	@Test(priority = 1)
 	public void Serach_DepartmentFunctionality_1_1() {
 
 		h.checkEachSearchByDepartmentButton1();
 
-		CommonMethods.clickSpecificElementInListByText(h.departmentList, Constants.ALL_DEPARTMENTS_TEXT);
+		CommonMethods.clickSpecificElementInListByText(h.departmentList, BaseClass.getPropertyString("allDepartmentText"));
 
 	}
 
 	@Test(priority = 2, retryAnalyzer = utilities.RetryAnalyzer.class)
-	public void Serach_SuggestionFunctionality_2() throws TimeoutException {
+	public void Serach_SuggestionFunctionality_2()  {
 
-		CommonMethods.sendText(h.searchBar, Constants.SEARCH_SUGGESTION + " "); // Add " " because Selenium will detect
+		CommonMethods.sendText(h.searchBar, BaseClass.getPropertyString("searchWord")+" "); // Add " " because Selenium will detect
 																				// the letter before the word complete
 																				// and will have different suggestion
 		h.checkSuggestionList();
@@ -54,7 +54,7 @@ public class SerachTest extends CommonMethods {
 	@Test(priority = 3, retryAnalyzer = utilities.RetryAnalyzer.class)
 	public void Serach_SearchByInputItemFunctionality_3() {
 
-		CommonMethods.sendText(h.searchBar, Constants.SEARCH_INPUT);
+		CommonMethods.sendText(h.searchBar, BaseClass.getPropertyString("searchInput"));
 
 		h.searchIconButton.click();
 
@@ -62,13 +62,13 @@ public class SerachTest extends CommonMethods {
 
 	}
 
-	@Test(priority = 4, retryAnalyzer = utilities.RetryAnalyzer.class)
+	@Test(priority = 4)
 	public void Serach_DepartmentFunctionality_1_2() {
 
 		h.checkEachSearchByDepartmentButton2();
 
 		// reset to All Department
-		CommonMethods.clickSpecificElementInListByText(h.departmentList, Constants.ALL_DEPARTMENTS_TEXT);
+		CommonMethods.clickSpecificElementInListByText(h.departmentList, BaseClass.getPropertyString("allDepartmentText"));
 
 	}
 
