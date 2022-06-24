@@ -51,21 +51,21 @@ public class HomePageTest extends CommonMethods {
 	
 	//Armeena 06/20/22
 	
-	@Test
+	@Test(priority = 4, retryAnalyzer = utilities.RetryAnalyzer.class)
 	public void homePage_categoryTabFunctionality_1() {
 
 		h.categoriesTabIsNavigate();
 
 	}
 	
-	@Test
+	@Test(priority = 5, retryAnalyzer = utilities.RetryAnalyzer.class)
 	public void homePage_tabsUnderSearchBarFunctionality_2() {
 
 		h.checkEachTabUnderSearchBar();
 
 	}
 
-	@Test
+	@Test(priority = 6, retryAnalyzer = utilities.RetryAnalyzer.class)
 	public void homePage_categoryTabFunctionality_3() {
 
 		h.changeZipcode();
