@@ -1,6 +1,7 @@
 package pageFactory;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,6 +11,7 @@ import org.testng.Assert;
 
 import utilities.BaseClass;
 import utilities.CommonMethods;
+import utilities.Constants;
 
 public class CartPage extends CommonMethods{
 	
@@ -22,7 +24,7 @@ public class CartPage extends CommonMethods{
 		
 	}
 	
-	private WebDriver driver = BaseClass.getDriver();
+	private static WebDriver driver = BaseClass.getDriver();
 	
 	@FindBy(xpath = "//*[@id=\"main-menu\"]/li[9]/button")
 	public static WebElement homeUnderCategories;
@@ -78,17 +80,25 @@ public class CartPage extends CommonMethods{
 	@FindBy(xpath = "//*[@id='shopping-cart']/div[3]")
 	public WebElement saveForLaterDislay;
 	
+//	@FindBy(xpath = "//*[@id=\"Jewelry-categoryMenu12\"]/ul/li")
+//	public static List<WebElement> jewelrySubList1;
+//	
+//	@FindBy(xpath = "//*[@id=\"Bracelets-categorySubMenu2\"]/ul/li/a")
+//	public static List<WebElement> jewelrysubList2;
 	
 	
 	
     // Alip	06/21/2022
 	public void verifySubTotal() {
 		CommonMethods.waitForVisibility(h.categoriesButton).click();
-
+		
+		CommonMethods.waitVisibilityOfList(h.categoriesListButton);
 		CommonMethods.clickValueFromListByText(h.categoriesListButton, BaseClass.getPropertyString("subCategoryForSubtotal1"));
+		//CommonMethods.wait(1);
 		CommonMethods.clickValueFromListByText(h.bigCategoriesList, BaseClass.getPropertyString("subCategoryForSubtatal2"));
 	
 		CommonMethods.jsClickValueFromListByIndex(p.productList, BaseClass.getPropertyInteger("subTotalProductIndex1"));
+		driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
 		CommonMethods.jsClick(p.productBuyNow);
 		CommonMethods.waitForVisibility(p.productAddToCart);
 		CommonMethods.jsClick(p.productAddToCart);
@@ -96,6 +106,7 @@ public class CartPage extends CommonMethods{
 		
 		driver.navigate().back();
 		
+		driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
 		CommonMethods.jsClickValueFromListByIndex(p.productList, BaseClass.getPropertyInteger("subTotalProductIndex2"));
 		CommonMethods.jsClick(p.productBuyNow);
 		CommonMethods.waitForVisibility(p.productAddToCart);
@@ -114,20 +125,32 @@ public class CartPage extends CommonMethods{
 
 		CommonMethods.clickValueFromListByText(h.categoriesListButton, BaseClass.getPropertyString("saveForLaterSubcategory1"));
 		CommonMethods.clickValueFromListByText(h.bigCategoriesList, BaseClass.getPropertyString("saveForLaterSubcategory2"));
+		//CommonMethods.wait(1);
 		CommonMethods.clickValueFromListByText(h.bigCategoriesList, BaseClass.getPropertyString("saveForLaterSubcategory3"));
 		
+		driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+		CommonMethods.waitVisibilityOfList(p.productList);
 		CommonMethods.jsClickValueFromListByIndex(p.productList, BaseClass.getPropertyInteger("saveForLaterProductIndex"));
 		CommonMethods.jsClickValueFromListByIndex(p.productOptionList, BaseClass.getPropertyInteger("saveForlaterOptionIndex"));
 		
+		//CommonMethods.wait(1);
+		driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
 		CommonMethods.waitForVisibility(addToCartButton);
 		CommonMethods.jsClick(addToCartButton);
+		
+		//CommonMethods.wait(2);
 		CommonMethods.waitForVisibility(viewCartButton);
 		CommonMethods.jsClick(viewCartButton);
-		CommonMethods.waitForVisibility(saveForLater);
-		CommonMethods.jsClick(saveForLater);
-	
-
-				
+		
+		try {
+		driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT_TIME, TimeUnit.SECONDS);
+		CommonMethods.waitForClickability(saveForLater);
+		saveForLater.click();
+		}catch(Exception e)	{
+			e.printStackTrace();
+		}
+		
+		CommonMethods.waitForVisibility(saveForLaterDislay);
 		Assert.assertTrue(saveForLaterDislay.isDisplayed());
 	}
 	

@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="testCases.ShopTravelTest">
+      <class name="testCases.CartTest">
         <methods>
-          <include name="Search_hotel_2"/>
           <include name="setUp"/>
+          <include name="Cart_VerifySaveForLater_1"/>
         </methods>
-      </class> <!-- testCases.ShopTravelTest -->
+      </class> <!-- testCases.CartTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

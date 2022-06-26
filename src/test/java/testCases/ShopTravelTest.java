@@ -1,6 +1,5 @@
 package testCases;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -10,12 +9,11 @@ import utilities.CommonMethods;
 
 public class ShopTravelTest extends CommonMethods {
 
-	public WebDriver driver;
 
 	 @BeforeMethod
 	    public void setUp() {
 
-	        driver = BaseClass.openBrowserAndGetURL();
+	        BaseClass.openBrowserAndGetURL();
 
 	        CommonMethods.dismissNonJsPopUp(h.dismissButton);
 	    }
