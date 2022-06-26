@@ -335,7 +335,7 @@ public class CommonMethods extends PageInitializer {
 		return elemTexts;
 	}
 
-	// added by Pawitri 06/19/2022
+	// Created by Pawitri 06/19/2022
 	public static void dismissNonJsPopUp(WebElement nonJsPopUpDissButton) {
 
 		try {
@@ -348,7 +348,7 @@ public class CommonMethods extends PageInitializer {
 
 	}
 
-	// added by Pawitri 06/19/2022
+	// Created by Pawitri 06/19/2022
 	public static void assertCheckIsNavigateURL(List<WebElement> listOfWebElement) {
 
 		String homePageURL = driver.getCurrentUrl();
@@ -364,7 +364,7 @@ public class CommonMethods extends PageInitializer {
 		}
 	}
 
-	// added by Pawitri 06/19/2022
+	// Created by Pawitri 06/19/2022
 	public static void clickSpecificElementInListByText(List<WebElement> listOfWebElement,
 			String textOfSpecificElement) {
 
@@ -380,7 +380,7 @@ public class CommonMethods extends PageInitializer {
 
 	}
 
-	// added by Pawitri 06/19/2022
+	// Created by Pawitri 06/19/2022
 	// ScreenShot for Pass test
 	public static byte[] takeScreenshot_pass(String filename) {
 
@@ -400,7 +400,7 @@ public class CommonMethods extends PageInitializer {
 		return picBytes;
 	}
 
-	// added by Pawitri 06/19/2022
+	// Created by Pawitri 06/19/2022
 	// ScreenShot for fail test
 	public static byte[] takeScreenshot_fail(String filename) {
 
@@ -419,73 +419,132 @@ public class CommonMethods extends PageInitializer {
 
 		return picBytes;
 	}
-	 
-		//Created by Alip	06/21/2022
-		//select value from list
-		
-		public static void clickValueFromListByText(List<WebElement> element, String text) {
-			for (WebElement value : element) {
+
+	// Created by Alip 06/21/2022
+	// select value from list
+
+	public static void clickValueFromListByText(List<WebElement> element, String text) {
+		for (WebElement value : element) {
+			if (value.isDisplayed()) {
+				if (value.getText().contains(text)) {
+					value.click();
+					break;
+				}
+			}
+		}
+	}
+
+	// Created by Alip 06/21/2022
+	// select value from list
+	public static void doubleClickValueFromListByText(List<WebElement> element, String text) {
+		for (WebElement value : element) {
+			if (value.isDisplayed()) {
+				if (value.getText().contains(text)) {
+					doubleClick(value);
+					break;
+				}
+			}
+		}
+	}
+
+	// Created by Alip 06/21/2022
+	// select value from list
+	public static void jsClickValueFromListByIndex(List<WebElement> elements, int index) {
+		try {
+			for (int i = 0; i < elements.size(); i++) {
+				if (index <= elements.size()) {
+					WebElement element = elements.get(index);
+					CommonMethods.jsClick(element);
+				}
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	// Created by Alip 06/21/2022
+	// select value from list
+	public static void jsClickEveryValueFromList(List<WebElement> elements) {
+		try {
+			for (WebElement value : elements) {
 				if (value.isDisplayed()) {
-					if (value.getText().contains(text)) {
-						value.click();
-						break;
-					}
+					jsClick(value);
+					break;
 				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
-		//Created by Alip	06/21/2022
-		//select value from list
-		public static void doubleClickValueFromListByText(List<WebElement> element, String text) {
-			for (WebElement value : element) {
-				if (value.isDisplayed()) {
-					if (value.getText().contains(text)) {
-						doubleClick(value);
-						break;
-					}
-				}
+	}
+
+	// Created by Pawitri 06/21/22
+	public static void waitVisibilityOfList(List<WebElement> listOfElement) {
+
+		WebDriverWait wait = new WebDriverWait(driver, 20);
+		wait.until(ExpectedConditions.visibilityOfAllElements(listOfElement));
+
+	}
+
+	// Created by Pawitri 06/21/22
+	public static void pickDateMonthYear(List<WebElement> DateList, WebElement calenderMonth, WebElement calenderYear,
+			WebElement calendernextMonthButton, String date, String month, String year) {
+
+		while (true) {
+
+			String currentMonth = calenderMonth.getText();
+			String currentYear = calenderYear.getText();
+
+			if (currentMonth.equalsIgnoreCase(month) && currentYear.equalsIgnoreCase(year)) {
+				CommonMethods.selectCalendarDate(DateList, date);
+				break;
 			}
+
+			calendernextMonthButton.click();
 		}
-		
-		
-		//Created by Alip	06/21/2022
-		//select value from list
-		public static void jsClickValueFromListByIndex(List<WebElement> elements, int index) {
-			try {
-				for(int i = 0 ; i < elements.size();i++) {
-					if(index <= elements.size()) {
-						WebElement element = elements.get(index);
-						CommonMethods.jsClick(element);
-						}
-				}
-			
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		//Created by Alip	06/21/2022
-				//select value from list
-				public static void jsClickEveryValueFromList(List<WebElement> elements) {
-					try {
-						for (WebElement value : elements) {
-							if (value.isDisplayed()) {
-								jsClick(value);
-									break;
-								}
-							}
-					}catch(Exception e) {
-						e.printStackTrace();
-					}
+
+	}
+	
+	// Created by Pawitri 06/21/22
+		public static void pickMonthYear(WebElement calenderMonth, WebElement calenderYear,
+				WebElement calendernextMonthButton,String month, String year) {
+
+			while (true) {
+
+				String currentMonth = calenderMonth.getText();
+				String currentYear = calenderYear.getText();
+
+				if (currentMonth.equalsIgnoreCase(month) && currentYear.equalsIgnoreCase(year)) {
+					break;
 				}
 
+				calendernextMonthButton.click();
+			}
 
-		//added by Pawitri 60/21/22
-		public static void waitVisibilityOfList(List<WebElement> listOfElement) {
-			
-			WebDriverWait wait = new WebDriverWait(BaseClass.getDriver(),20);
-			wait.until(ExpectedConditions.visibilityOfAllElements(listOfElement));
-			
 		}
-		
+
+	//// Created by Pawitri 06/21/22
+	public static void pickRadioButton(List<WebElement> radioButtonList, String textOfRadio) {
+
+		for (int i = 0; i < radioButtonList.size(); i++) {
+			if (radioButtonList.get(i).getText().contains(textOfRadio)) {
+				radioButtonList.get(i).click();
+			}
+		}
+
+	}
+
+	// Created by Pawitri 06/21/22
+	public static void pickDynamicList(List <WebElement> list, String text) {
+
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).getText().contains(text)) {
+				list.get(i).click();
+				break;
+			}
+		}
+	}
+	
+	
+
 }// class

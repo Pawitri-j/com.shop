@@ -17,8 +17,6 @@ public class ShopTravelPage extends CommonMethods {
 
 		PageFactory.initElements(BaseClass.getDriver(), this);
 	}
-	
-	private WebDriver driver = BaseClass.getDriver();
 
 	// Alip 06/21/2022
 	@FindBy(xpath = "//*[@id=\"js-shop-travel-car\"]")
@@ -66,7 +64,7 @@ public class ShopTravelPage extends CommonMethods {
 		CommonMethods.waitForVisibility(carButton);
 		carButton.click();
 
-		try {
+		//try {
 			CommonMethods.waitForVisibility(dropOffLocationBox);
 			CommonMethods.sendText(pickUpLocationBox, BaseClass.getPropertyString("carPickUpLocation"));
 
@@ -74,19 +72,28 @@ public class ShopTravelPage extends CommonMethods {
 			CommonMethods.doubleClickValueFromListByText(airportList, BaseClass.getPropertyString("carAtAirport"));
 
 			Assert.assertTrue(dropOffLocationBox.isEnabled());
-//		CommonMethods.sendText(dropOffLocationBox, "MIA");
+			CommonMethods.sendText(dropOffLocationBox, "MIA");
+			
 			pickUpDate.click();
+				
+			CommonMethods.pickMonthYear(calenderMonth, calenderYear, calendernextMonthButton,
+					BaseClass.getPropertyString("carPickUpMonth"), BaseClass.getPropertyString("carPickUpYear"));
 			CommonMethods.selectCalendarDate(pickUpDateBox, BaseClass.getPropertyString("carPickUpDate"));
+			
 			CommonMethods.selectDropDownValue(pickUpTimeDropDown, BaseClass.getPropertyString("carPickUpTime"));
+			
 			dropOffDate.click();
+			
+			CommonMethods.pickMonthYear(calenderMonth, calenderYear, calendernextMonthButton,
+					BaseClass.getPropertyString("carDropOffMonth"), BaseClass.getPropertyString("carDropOffYear"));
 			CommonMethods.selectCalendarDate(dropOffDateList, BaseClass.getPropertyString("carDropOffDate"));
 			CommonMethods.selectDropDownValue(dropOffTimeDropDown, BaseClass.getPropertyString("carDropOffTime"));
 			CommonMethods.sendText(emailBox, BaseClass.getPropertyString("validUserName"));
 			Assert.assertTrue(searchButton.isEnabled());
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
 
 	}
 
@@ -108,7 +115,7 @@ public class ShopTravelPage extends CommonMethods {
 	public WebElement hotelDateBar;
 
 	@FindBy(xpath = "//*[contains(@class, 'ui-state-default')]")
-	public List<WebElement> hotelStartDate;
+	public List<WebElement> hotelDateList;
 
 	@FindBy(xpath = "//input[@id='hotel_end_date']")
 	public WebElement hotelendDate;
@@ -127,7 +134,7 @@ public class ShopTravelPage extends CommonMethods {
 	@FindBy(xpath = "//input[@id='js-travel-search']")
 	public WebElement searchBookinghotel;
 
-//Flight xpaths/////////////////////////////////////////
+//Flight xpaths
 
 	@FindBy(xpath = "//div[@id='js-shop-travel-flights']")
 	public WebElement flightButton;
@@ -186,53 +193,26 @@ public class ShopTravelPage extends CommonMethods {
 		cityorAirportCodeBTNHotel.sendKeys(BaseClass.getPropertyString("CityOrairPortCodeHotel"));
 
 		CommonMethods.waitVisibilityOfList(hotelCityList);
-	
-		for (int i = 0; i < hotelCityList.size(); i++) {
-			CommonMethods.waitForVisibility(hotelCityList.get(i));
-			if (hotelCityList.get(i).getText()
-					.contains(BaseClass.getPropertyString("hotelCityDropDown"))) {
+		
+		CommonMethods.pickDynamicList(hotelCityList, BaseClass.getPropertyString("hotelCityDropDown"));
 
-				hotelCityList.get(i).click();
-				break;
-				
-			}
-		}
-			
-		}
+	}
 	
 
 	public void startAndEndDate() {
 		
 		hotelDateBar.click();
+
 		
-			while (true) {
-				
-				String currentMonth = calenderMonth.getText();
-				String currentYear = calenderYear.getText();
-				
-				if (currentMonth.equals(BaseClass.getPropertyString("hotelStartMonth")) && currentYear.equals(BaseClass.getPropertyString("hotelStartYear"))) {
-					CommonMethods.selectCalendarDate(hotelStartDate, BaseClass.getPropertyString("hotelStartDate"));
-					break;
-				}
-				
-				calendernextMonthButton.click();
-			}
+		CommonMethods.pickDateMonthYear(hotelDateList, calenderMonth, calenderYear,calendernextMonthButton, 
+				BaseClass.getPropertyString("hotelStartDate"), BaseClass.getPropertyString("hotelStartMonth"), 
+				BaseClass.getPropertyString("hotelStartYear"));
 			
 		hotelendDate.click();
-			while (true) {
 				
-				String currentMonth = calenderMonth.getText();
-				String currentYear = calenderYear.getText();
-				
-				if (currentMonth.equals(BaseClass.getPropertyString("hotelEndMonth")) && currentYear.equals(BaseClass.getPropertyString("hotelEndYear"))) {
-					CommonMethods.selectCalendarDate(hotelStartDate, BaseClass.getPropertyString("hotelEndDate"));
-					break;
-				}
-				
-				calendernextMonthButton.click();
-			}
-				
-		
+		CommonMethods.pickDateMonthYear( hotelDateList, calenderMonth, calenderYear, calendernextMonthButton, 
+				BaseClass.getPropertyString("hotelEndDate"), BaseClass.getPropertyString("hotelEndMonth"), 
+				BaseClass.getPropertyString("hotelEndYear"));
 		
 		
 	}
@@ -271,11 +251,7 @@ public class ShopTravelPage extends CommonMethods {
 	
 		CommonMethods.waitForVisibility(roundTripButton);
 		
-		for (int i = 0; i < roundTripRadioButtonList.size(); i++) {
-			if (roundTripRadioButtonList.get(i).getText().contains(BaseClass.getPropertyString("roundTripOROneway"))) {
-				roundTripRadioButtonList.get(i).click();
-			}
-		}
+		CommonMethods.pickRadioButton(roundTripRadioButtonList, BaseClass.getPropertyString("roundTripOROneway"));
 	}
 
 	public void flightFromCityselect() {
@@ -283,14 +259,9 @@ public class ShopTravelPage extends CommonMethods {
 		flightFromCityOrAirport.sendKeys(BaseClass.getPropertyString("flightFromCity"));
 		
 		CommonMethods.waitVisibilityOfList(flightFromCityAirportlistOptions);
-
-		for (int i = 0; i < flightFromCityAirportlistOptions.size(); i++) {
-			if (flightFromCityAirportlistOptions.get(i).getText()
-					.contains(BaseClass.getPropertyString("flightFromCityDropDown"))) {
-
-				flightFromCityAirportlistOptions.get(i).click();
-			}
-		}
+		
+		CommonMethods.pickDynamicList(flightFromCityAirportlistOptions, BaseClass.getPropertyString("flightFromCityDropDown"));
+		
 	}
 
 	public void flightToCity() {
@@ -298,45 +269,24 @@ public class ShopTravelPage extends CommonMethods {
 		flightToCityOrAirportBar.click();
 		flightToCityOrAirportBar.sendKeys(BaseClass.getPropertyString("flightToCity")); 
 
-		//CommonMethods.wait(3);
-	
-		
 		CommonMethods.waitVisibilityOfList(flightToCityOrAirportList);
 		
-		for (int i = 0; i < flightToCityOrAirportList.size(); i++)
-
-			if (flightToCityOrAirportList.get(i).getText()
-					.contains(BaseClass.getPropertyString("flightToCityDropDown"))) {
-			
-				flightToCityOrAirportList.get(i).click();
-			}
+		CommonMethods.pickDynamicList(flightToCityOrAirportList, BaseClass.getPropertyString("flightToCityDropDown"));
 	}
 
 	public void selectflightstartEndDate() {
 
 		flightDepartureDate.click();
-		while (true) {
-			String currentMonth = calenderMonth.getText();
-			String currentYear = calenderYear.getText();
-			if (currentMonth.equals(BaseClass.getPropertyString("flightstartMonth")) && currentYear.equals(BaseClass.getPropertyString("flightstartYear"))) {
-				break;
-			} else {
-				calendernextMonthButton.click();
-			}
-		}
-
-		CommonMethods.selectCalendarDate(allDates, BaseClass.getPropertyString("flightStartDate")); 
-		CommonMethods.getWaitObject();
+		
+		CommonMethods.pickDateMonthYear(allDates, calenderMonth, calenderYear, calendernextMonthButton, 
+				BaseClass.getPropertyString("flightStartDate"), BaseClass.getPropertyString("flightstartMonth"),
+				BaseClass.getPropertyString("flightstartYear"));
+		
 		flightReturnDate.click();
-		while (true) {
-			String currentMonth = calenderMonth.getText();
-			String currentYear = calenderYear.getText();
-			if (currentMonth.equals(BaseClass.getPropertyString("flightendMonth")) && currentYear.equals(BaseClass.getPropertyString("flightendYear"))) {
-				break;
-			}
-			calendernextMonthButton.click();
-		}
-		CommonMethods.selectCalendarDate(allDates, BaseClass.getPropertyString("flightEndDate")); 
+		
+		CommonMethods.pickDateMonthYear(allDates, calenderMonth, calenderYear, calendernextMonthButton, 
+				BaseClass.getPropertyString("flightEndDate"), BaseClass.getPropertyString("flightendMonth"), 
+				BaseClass.getPropertyString("flightendYear"));
 	}
 
 	public void flightNoOfTravellers() {

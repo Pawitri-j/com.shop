@@ -17,9 +17,7 @@ public class SignInPage extends CommonMethods{
 
 		PageFactory.initElements(BaseClass.getDriver(), this);
 	}
-	
-	private WebDriver driver = BaseClass.getDriver();
-	
+		
 	//Maria
 	@FindBy(xpath="//a[contains(text(),'Sign In')]")public WebElement signInTab;
 
@@ -46,7 +44,7 @@ public class SignInPage extends CommonMethods{
 		CommonMethods.jsClick(signInTab);
 		CommonMethods.getWaitObject();
 		Assert.assertTrue(signInPageHeader.isDisplayed());
-		System.out.println(signInPageHeader.getText());
+		//System.out.println(signInPageHeader.getText());
 	}
 
 	public void enterEmailAddress() {

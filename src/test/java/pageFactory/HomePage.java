@@ -85,7 +85,7 @@ public class HomePage extends CommonMethods {
 		}
 	}
 
-	public void checkEachSearchByDepartmentButton1() {
+	public void checkEachSearchByDepartmentButton_1() {
 
 		String departmentText;
 
@@ -101,8 +101,8 @@ public class HomePage extends CommonMethods {
 			searchIconButton.click();
 
 			if (departmentText.contains(BaseClass.getPropertyString("allDepartmentText"))) {
-				CommonMethods.scrollToElement(h.shopLocal);
-				Assert.assertTrue(h.shopLocal.isDisplayed());
+				CommonMethods.scrollToElement(shopLocal);
+				Assert.assertTrue(shopLocal.isDisplayed());
 			} else {
 				// User should be navigated to the department being tested
 				String productDepartmentText = p.productDepartmentName.getText();
@@ -114,7 +114,7 @@ public class HomePage extends CommonMethods {
 
 	}
 
-	public void checkEachSearchByDepartmentButton2() {
+	public void checkEachSearchByDepartmentButton_2() {
 
 		String departmentText;
 
@@ -130,8 +130,8 @@ public class HomePage extends CommonMethods {
 			searchIconButton.click();
 
 			if (departmentText.contains(BaseClass.getPropertyString("allDepartmentText"))) {
-				CommonMethods.scrollToElement(h.shopLocal);
-				Assert.assertTrue(h.shopLocal.isDisplayed());
+				CommonMethods.scrollToElement(shopLocal);
+				Assert.assertTrue(shopLocal.isDisplayed());
 			} else if (departmentText.contains(BaseClass.getPropertyString("giftDepartmentText"))) {
 				Assert.assertFalse(false); // this one failed but need to test on another one as well
 			} else {
@@ -214,14 +214,14 @@ public class HomePage extends CommonMethods {
 		
 		String homePageURL = driver.getCurrentUrl();
 		
-		for (int i = 0; i < h.underSearchBarTabList.size(); i++) {
+		for (int i = 0; i < underSearchBarTabList.size(); i++) {
 		
-			h.underSearchBarTabList.get(i).click();
+			underSearchBarTabList.get(i).click();
 			String clickedPageURL = driver.getCurrentUrl();
 			
 			Assert.assertFalse(homePageURL.equals(clickedPageURL));
 			
-			h.shopLogo.click();
+			shopLogo.click();
 			
 			Assert.assertTrue(driver.getCurrentUrl().equals(homePageURL));
 		}
@@ -333,14 +333,13 @@ public class HomePage extends CommonMethods {
 		for (int i = 0; i < underSearchBarTabsList.size(); i++) {
 
 			tabsMenu = underSearchBarTabsList.get(i).getText();
-
-			System.out.println(tabsMenu);
+			//System.out.println(tabsMenu);
 
 			CommonMethods.jsClick(underSearchBarTabsList.get(i));
 
 			tabsHeader = underSearchBarTabsList.get(i).getText();
-
-			System.out.println(tabsHeader);
+			//System.out.println(tabsHeader);
+			
 			Assert.assertTrue(tabsMenu.contains(tabsHeader));
 
 		}
@@ -352,7 +351,7 @@ public class HomePage extends CommonMethods {
 		zipcodeBox.clear();
 		zipcodeBox.sendKeys(BaseClass.getPropertyString("zipCode"));
 		searchIcon.click();
-		BaseClass.getDriver().navigate().refresh();
+		driver.navigate().refresh();  //StaleElementException
 		CommonMethods.waitForVisibility(verifyZipcode);
 		Assert.assertTrue(verifyZipcode.getText().contains(BaseClass.getPropertyString("zipCode")));
 		
