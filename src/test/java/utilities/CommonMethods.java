@@ -370,7 +370,7 @@ public class CommonMethods extends PageInitializer {
 
 		String departmentText;
 
-		for (int i = 1; i < listOfWebElement.size(); i++) {
+		for (int i = 0; i < listOfWebElement.size(); i++) {
 
 			departmentText = listOfWebElement.get(i).getText();
 			if (departmentText.contains(textOfSpecificElement)) {

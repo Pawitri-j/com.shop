@@ -19,10 +19,10 @@ public class CartTest extends CommonMethods {
 		CommonMethods.dismissNonJsPopUp(h.dismissButton);
 	}
 
-//    @AfterClass
-//    public void destroy() {
-//        BaseClass.tearDown();    
-//        }
+    @AfterClass
+    public void destroy() {
+        BaseClass.tearDown();    
+        }
 
 	// Alip 06/21/2022
 	@Test(priority = 1, retryAnalyzer = utilities.RetryAnalyzer.class)
