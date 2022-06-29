@@ -5,8 +5,9 @@
     <classes>
       <class name="testCases.CartTest">
         <methods>
+          <include name="destroy"/>
           <include name="setUp"/>
-          <include name="Cart_VerifySaveForLater_1"/>
+          <include name="Cart_VerifySubTotal_2"/>
         </methods>
       </class> <!-- testCases.CartTest -->
     </classes>

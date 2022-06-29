@@ -21,7 +21,7 @@ public class Constants {
 	
 	
 	//Home Page Test		
-	public static final ArrayList<String> NAME_OF_BANNERS 
+	public static ArrayList<String> nameOfBanners 
 	= new ArrayList<>(Arrays.asList("Hot", "For your Little Miracle",
 			"Layered Custom Capsule Collection", "Best of Web Prices & Instant Cashback!",
 			"Stay Healthy with Essential 9!", "Cleaning & Health Have Never Been More Important"));		
