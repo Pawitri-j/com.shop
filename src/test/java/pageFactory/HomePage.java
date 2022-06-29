@@ -196,7 +196,7 @@ public class HomePage extends CommonMethods {
 
 		for (int i = 0; i < homepageBannerList.size(); i++) {
 			System.out.println(homepageBannerList.get(i).getText());
-			Assert.assertTrue(homepageBannerList.get(i).getText().contains(Constants.NAME_OF_BANNERS.get(i)));
+			Assert.assertTrue(homepageBannerList.get(i).getText().contains(Constants.nameOfBanners.get(i)));
 		}
 	}
 
